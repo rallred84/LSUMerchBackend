@@ -8,22 +8,26 @@ async function createUser({
   lastName,
   isAdmin,
 }) {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const {
-    rows: [newUser],
-  } = await client.query(
-    `
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const {
+      rows: [newUser],
+    } = await client.query(
+      `
         INSERT INTO users (username, password, "firstName", "lastName", "isAdmin")
         VALUES ($1, $2, $3, $4, $5)
         ON CONFLICT (username) DO NOTHING
         RETURNING *;
         `,
-    [username, hashedPassword, firstName, lastName, isAdmin]
-  );
+      [username, hashedPassword, firstName, lastName, isAdmin]
+    );
 
-  if (newUser) {
-    delete newUser.password;
-    return newUser;
+    if (newUser) {
+      delete newUser.password;
+      return newUser;
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
 

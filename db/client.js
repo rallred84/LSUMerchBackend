@@ -2,7 +2,8 @@
 const { Pool } = require('pg');
 
 const connectionString =
-  process.env.DATABASE_URL || 'https://localhost:5432/lsu-merch';
+  process.env.DATABASE_URL ||
+  'postgres://postgres:postgres@localhost:5432/lsu-merch';
 
 const client = new Pool({
   connectionString,

@@ -2,21 +2,30 @@ const {
   //Individiual table functions from all tables here
   createUser,
   createProduct,
-} = require('./');
+  createCategory,
+  createOrder,
+  createAddress,
+  createReview,
+} = require("./");
 
-const client = require('./client');
+const client = require("./client");
 
 async function dropTables() {
-  console.log('Dropping All Tables');
+  console.log("Dropping All Tables");
   await client.query(`
+  DROP TABLE IF EXISTS reviews;
+  DROP TABLE IF EXISTS addresses;
+  DROP TABLE IF EXISTS orders;
+  DROP TABLE IF EXISTS categories;
   DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS users;
   `);
 }
 
 async function createTables() {
-  console.log('Starting to build the tables...');
-  await client.query(`
+  try {
+    console.log("Starting to build the tables...");
+    await client.query(`
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
@@ -34,87 +43,244 @@ async function createTables() {
     quantity INTEGER NOT NULL,
     size VARCHAR(255)
   );
+
+  CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL
+  );
+
+  CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    price MONEY NOT NULL,
+    "hasShipped" BOOLEAN DEFAULT false,
+    "isComplete" BOOLEAN DEFAULT false
+  );
+
+  CREATE TABLE addresses (
+    id SERIAL PRIMARY KEY,
+    street TEXT NOT NULL,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL,
+    zip VARCHAR(10) NOT NULL
+  );
+
+  CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    message TEXT NOT NULL,
+    rating INTEGER NOT NULL,
+    date DATE DEFAULT CURRENT_DATE NOT NULL
+  );
   `);
+    console.log("Tables built");
+  } catch (error) {
+    console.error("Tables failed");
+    throw error;
+  }
   //USERS
   //Will add addressId after adding address table
   //Phone Number?
+  //D/O/B, age?
   //PRODUCTS
   //Research how to add image?
 }
 
 async function createInitialUsers() {
-  console.log('Creating Initial Users');
+  console.log("Creating Initial Users");
 
   try {
     const usersToCreate = [
       {
-        username: 'SydneyCodes',
-        password: 'jdsff',
-        firstName: 'Sydney',
-        lastName: 'Weakley',
+        username: "SydneyCodes",
+        password: "jdsff",
+        firstName: "Sydney",
+        lastName: "Weakley",
         isAdmin: true,
       },
       {
-        username: 'RobertAlsoCodes',
-        password: 'jdsff',
-        firstName: 'Robert',
-        lastName: 'Allred',
+        username: "RobertAlsoCodes",
+        password: "jdsff",
+        firstName: "Robert",
+        lastName: "Allred",
         isAdmin: true,
       },
       {
-        username: 'MichalAlsoAlsoCodes',
-        password: 'jdsff',
-        firstName: 'Michael',
-        lastName: 'Wilson',
+        username: "MichalAlsoAlsoCodes",
+        password: "jdsff",
+        firstName: "Michael",
+        lastName: "Wilson",
         isAdmin: true,
       },
       {
-        username: 'EduardoAlsoAlsoAlsoCodes',
-        password: 'jdsff',
-        firstName: 'Eduardo',
-        lastName: 'Martin',
+        username: "EduardoAlsoAlsoAlsoCodes",
+        password: "jdsff",
+        firstName: "Eduardo",
+        lastName: "Martin",
         isAdmin: true,
       },
     ];
 
     const users = await Promise.all(usersToCreate.map(createUser));
 
-    console.log('Users created:');
+    console.log("Users created:");
     console.log(users);
-    console.log('Finished creating users!');
+    console.log("Finished creating users!");
   } catch (error) {
-    console.error('Error creating users!');
+    console.error("Error creating users!");
     throw error;
   }
 }
 
 async function createInitialProducts() {
-  console.log('Creating Initial Products');
+  console.log("Creating Initial Products");
 
   try {
     const productsToCreate = [
       {
-        name: 'Basketball',
+        name: "Basketball",
         description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         price: 25,
         quantity: 4,
       },
       {
-        name: 'T-Shirt',
+        name: "T-Shirt",
         description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         price: 30,
         quantity: 10,
-        size: 'XL',
+        size: "XL",
       },
     ];
 
     const products = await Promise.all(productsToCreate.map(createProduct));
 
-    console.log('Product created:');
+    console.log("Product created:");
     console.log(products);
-    console.log('Finished creating products!');
+    console.log("Finished creating products!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function createInitialCategories() {
+  console.log("Creating Initial Categories");
+
+  try {
+    const categoriesToCreate = [
+      {
+        name: "T-Shirts",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      },
+      {
+        name: "Hats",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      },
+    ];
+
+    const categories = await Promise.all(
+      categoriesToCreate.map(createCategory)
+    );
+
+    console.log("Category created!");
+    console.log(categories);
+    console.log("Finished creating categories!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function createInitialOrders() {
+  console.log("Creating Initial Orders");
+
+  try {
+    const ordersToCreate = [
+      {
+        price: 40,
+        hasShipped: true,
+        isComplete: false,
+      },
+      {
+        price: 210,
+        hasShipped: false,
+        isComplete: false,
+      },
+      {
+        price: 10,
+        hasShipped: true,
+        isComplete: true,
+      },
+    ];
+
+    const orders = await Promise.all(ordersToCreate.map(createOrder));
+
+    console.log("Order created!");
+    console.log(orders);
+    console.log("Finished creating orders!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function createInitialAddresses() {
+  console.log("Creating Initial Addresses");
+
+  try {
+    const addressesToCreate = [
+      {
+        street: "2040 Thisway Dr.",
+        city: "Seattle",
+        state: "Oregon",
+        zip: "22432",
+      },
+      {
+        street: "2100 Overhere St.",
+        city: "Orlando",
+        state: "Florida",
+        zip: "5436-32431",
+      },
+      {
+        street: "555 Here Dr.",
+        city: "Chicago",
+        state: "Illinois",
+        zip: "65345",
+      },
+    ];
+
+    const addresses = await Promise.all(addressesToCreate.map(createAddress));
+
+    console.log("Address created!");
+    console.log(addresses);
+    console.log("Finished creating addresses!");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function createInitialReviews() {
+  console.log("Creating Initial Reviews");
+
+  try {
+    const reviewsToCreate = [
+      {
+        message:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+        rating: 3,
+      },
+      {
+        message:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+        rating: 1,
+      },
+    ];
+
+    const reviews = await Promise.all(reviewsToCreate.map(createReview));
+
+    console.log("Review created!");
+    console.log(reviews);
+    console.log("Finished creating reviews!");
   } catch (err) {
     console.error(err);
   }
@@ -125,6 +291,10 @@ async function rebuildDB() {
   await createTables();
   await createInitialUsers();
   await createInitialProducts();
+  await createInitialCategories();
+  await createInitialOrders();
+  await createInitialAddresses();
+  await createInitialReviews();
   // To rebuild and reseed the database, we will need to :
   // 1) Drop Tables
   // 2) Create Tables

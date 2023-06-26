@@ -6,12 +6,12 @@ const {
   createOrder,
   createAddress,
   createReview,
-} = require("./");
+} = require('./');
 
-const client = require("./client");
+const client = require('./client');
 
 async function dropTables() {
-  console.log("Dropping All Tables");
+  console.log('Dropping All Tables');
   await client.query(`
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS addresses;
@@ -24,7 +24,7 @@ async function dropTables() {
 
 async function createTables() {
   try {
-    console.log("Starting to build the tables...");
+    console.log('Starting to build the tables...');
     await client.query(`
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -72,9 +72,9 @@ async function createTables() {
     date DATE DEFAULT CURRENT_DATE NOT NULL
   );
   `);
-    console.log("Tables built");
+    console.log('Tables built');
   } catch (error) {
-    console.error("Tables failed");
+    console.error('Tables failed');
     throw error;
   }
   //USERS
@@ -86,97 +86,97 @@ async function createTables() {
 }
 
 async function createInitialUsers() {
-  console.log("Creating Initial Users");
+  console.log('Creating Initial Users');
 
   try {
     const usersToCreate = [
       {
-        username: "SydneyCodes",
-        password: "jdsff",
-        firstName: "Sydney",
-        lastName: "Weakley",
+        username: 'SydneyCodes',
+        password: 'test',
+        firstName: 'Sydney',
+        lastName: 'Weakley',
         isAdmin: true,
       },
       {
-        username: "RobertAlsoCodes",
-        password: "jdsff",
-        firstName: "Robert",
-        lastName: "Allred",
+        username: 'RobertAlsoCodes',
+        password: 'test',
+        firstName: 'Robert',
+        lastName: 'Allred',
         isAdmin: true,
       },
       {
-        username: "MichalAlsoAlsoCodes",
-        password: "jdsff",
-        firstName: "Michael",
-        lastName: "Wilson",
+        username: 'MichaelAlsoAlsoCodes',
+        password: 'test',
+        firstName: 'Michael',
+        lastName: 'Wilson',
         isAdmin: true,
       },
       {
-        username: "EduardoAlsoAlsoAlsoCodes",
-        password: "jdsff",
-        firstName: "Eduardo",
-        lastName: "Martin",
+        username: 'EduardoAlsoAlsoAlsoCodes',
+        password: 'test',
+        firstName: 'Eduardo',
+        lastName: 'Martin',
         isAdmin: true,
       },
     ];
 
     const users = await Promise.all(usersToCreate.map(createUser));
 
-    console.log("Users created:");
+    console.log('Users created:');
     console.log(users);
-    console.log("Finished creating users!");
+    console.log('Finished creating users!');
   } catch (error) {
-    console.error("Error creating users!");
+    console.error('Error creating users!');
     throw error;
   }
 }
 
 async function createInitialProducts() {
-  console.log("Creating Initial Products");
+  console.log('Creating Initial Products');
 
   try {
     const productsToCreate = [
       {
-        name: "Basketball",
+        name: 'Basketball',
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         price: 25,
         quantity: 4,
       },
       {
-        name: "T-Shirt",
+        name: 'T-Shirt',
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         price: 30,
         quantity: 10,
-        size: "XL",
+        size: 'XL',
       },
     ];
 
     const products = await Promise.all(productsToCreate.map(createProduct));
 
-    console.log("Product created:");
+    console.log('Product created:');
     console.log(products);
-    console.log("Finished creating products!");
+    console.log('Finished creating products!');
   } catch (err) {
     console.error(err);
   }
 }
 
 async function createInitialCategories() {
-  console.log("Creating Initial Categories");
+  console.log('Creating Initial Categories');
 
   try {
     const categoriesToCreate = [
       {
-        name: "T-Shirts",
+        name: 'T-Shirts',
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
       },
       {
-        name: "Hats",
+        name: 'Hats',
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
       },
     ];
 
@@ -184,16 +184,16 @@ async function createInitialCategories() {
       categoriesToCreate.map(createCategory)
     );
 
-    console.log("Category created!");
+    console.log('Category created!');
     console.log(categories);
-    console.log("Finished creating categories!");
+    console.log('Finished creating categories!');
   } catch (err) {
     console.error(err);
   }
 }
 
 async function createInitialOrders() {
-  console.log("Creating Initial Orders");
+  console.log('Creating Initial Orders');
 
   try {
     const ordersToCreate = [
@@ -216,71 +216,71 @@ async function createInitialOrders() {
 
     const orders = await Promise.all(ordersToCreate.map(createOrder));
 
-    console.log("Order created!");
+    console.log('Order created!');
     console.log(orders);
-    console.log("Finished creating orders!");
+    console.log('Finished creating orders!');
   } catch (err) {
     console.error(err);
   }
 }
 
 async function createInitialAddresses() {
-  console.log("Creating Initial Addresses");
+  console.log('Creating Initial Addresses');
 
   try {
     const addressesToCreate = [
       {
-        street: "2040 Thisway Dr.",
-        city: "Seattle",
-        state: "Oregon",
-        zip: "22432",
+        street: '2040 Thisway Dr.',
+        city: 'Seattle',
+        state: 'Oregon',
+        zip: '22432',
       },
       {
-        street: "2100 Overhere St.",
-        city: "Orlando",
-        state: "Florida",
-        zip: "5436-32431",
+        street: '2100 Overhere St.',
+        city: 'Orlando',
+        state: 'Florida',
+        zip: '5436-32431',
       },
       {
-        street: "555 Here Dr.",
-        city: "Chicago",
-        state: "Illinois",
-        zip: "65345",
+        street: '555 Here Dr.',
+        city: 'Chicago',
+        state: 'Illinois',
+        zip: '65345',
       },
     ];
 
     const addresses = await Promise.all(addressesToCreate.map(createAddress));
 
-    console.log("Address created!");
+    console.log('Address created!');
     console.log(addresses);
-    console.log("Finished creating addresses!");
+    console.log('Finished creating addresses!');
   } catch (err) {
     console.error(err);
   }
 }
 
 async function createInitialReviews() {
-  console.log("Creating Initial Reviews");
+  console.log('Creating Initial Reviews');
 
   try {
     const reviewsToCreate = [
       {
         message:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         rating: 3,
       },
       {
         message:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
         rating: 1,
       },
     ];
 
     const reviews = await Promise.all(reviewsToCreate.map(createReview));
 
-    console.log("Review created!");
+    console.log('Review created!');
     console.log(reviews);
-    console.log("Finished creating reviews!");
+    console.log('Finished creating reviews!');
   } catch (err) {
     console.error(err);
   }

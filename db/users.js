@@ -53,23 +53,27 @@ async function getUserById(userId) {
   }
 }
 
-async function loginUser(username, password) {
-  const {
-    rows: [user],
-  } = await client.query(
-    `
+async function loginUser({ username, password }) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
     SELECT * FROM users
     WHERE username = $1
   `,
-    [username]
-  );
+      [username]
+    );
 
-  const passwordsMatch = await bcrypt.compare(password, user.password);
+    const passwordsMatch = await bcrypt.compare(password, user.password);
 
-  if (passwordsMatch) {
-    delete user.password;
-    console.log(user);
-    return user;
+    if (passwordsMatch) {
+      delete user.password;
+      console.log(user);
+      return user;
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
 

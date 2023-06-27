@@ -14,52 +14,116 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 
 ### POST /users/register
 
-END USER
+**END USER**
+
 This route is used to create a new user account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
-Body:
-(object, required) contains the following key/value pairs:
--email (string, required): the desired email for the new user
--password (string, required): the desired password for the new user
--firstName (string, required): the first name of the new user
--lastName (string, required): the last name of the new user
--isAdmin (boolean, required): default false, is the new user an admin?
+**Body:**  
+**(object, required) contains the following key/value pairs:**  
+·email (string, required): the desired email for the new user  
+·password (string, required): the desired password for the new user  
+·firstName (string, required): the first name of the new user  
+·lastName (string, required): the last name of the new user  
+·isAdmin (boolean, required): default false, is the new user an admin?
 
-Returned Data
--token (string): the JSON Web Token which is used to authenticate the user with any future calls
--message (string): Thanks for signing up for our service.
--user (object): New user that was created
+**Returned Data**  
+·token (string): the JSON Web Token which is used to authenticate the user with any future calls  
+·message (string): Thanks for signing up for our service.  
+·user (object): New user that was created
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "Your account has been created Clark!",
+    "token": "xyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5MDY2ZGQ0MzkxNjAwTc1NTNlMDUiLCJ1c2VybmFtZSI6Im1hdHQiLCJpYXQiOjE1ODYwMzgzODF9.CTj4owBl0PB-G6G4E_1l6DS6_cVc0iKcMzBIWFUYM1p",
+    "user": {
+      "id": 5,
+      "email": "superman27@gmail.com"
+      //Additional user information
+    }
+  }
+}
+```
 
 ### POST /users/login
 
-END USER
+**END USER**  
 This route is used for a user to login when they already have an account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
-Body:
-(object, required) contains the following key/value pairs:
-email (string, required): the registered email for the user
-password (string, required): the matching password for the user
+**Body:**  
+**(object, required) contains the following key/value pairs:**  
+·email (string, required): the registered email for the user  
+·password (string, required): the matching password for the user
 
-Returned Data
--token (string): the JSON Web Token which is used to authenticate the user with any future calls
--message (string): You are logged in!
--user (object): New user that logged in
+**Returned Data**  
+·message (string): You are logged in!  
+·token (string): the JSON Web Token which is used to authenticate the user with any future calls  
+·user (object): New user that logged in
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "You are logged in! ",
+    "token": "xyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5MDY2ZGQ0MzkxNjAwTc1NTNlMDUiLCJ1c2VybmFtZSI6Im1hdHQiLCJpYXQiOjE1ODYwMzgzODF9.CTj4owBl0PB-G6G4E_1l6DS6_cVc0iKcMzBIWFUYM1p",
+    "user": {
+      "id": 5,
+      "email": "superman27@gmail.com"
+      //Additional user information
+    }
+  }
+}
+```
 
 ### GET /users/profile
 
-END USER
+**END USER**
 
 This route is used to grab an already logged in user's relevant data. It is mostly helpful for verifying the user has a valid token (and is thus logged in). You must pass a valid token with this request, or it will be rejected.
 
-Headers:
-(object literal, required)
-Content-Type (string, required): application/json
-Authorization (template literal, required): Bearer ${token}
+**Headers:**  
+**(object literal, required)**  
+·Content-Type (string, required): application/json  
+·Authorization (template literal, required): Bearer ${token}
 
-Returned Data
--user (object): User that matches token
--past orders
--users' cart (from users_products table)
+**Returned Data**  
+·user (object): User that matches token  
+·past orders  
+·users' cart (from users_products table)
+
+```json
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": 5,
+      "email": "superman27@gmail.com",
+      //Additional user information
+      "orders": [
+        { "id": 3, "price": 10, "hasShipped": true, "isComplete": false }
+      ],
+      "reviews": [
+        {
+          "productId": 6,
+          "message": "This product was wonderful!!",
+          "rating": 9
+        }
+      ],
+      "cart": [
+        {
+          "productId": 4,
+          "productDescription": "LSU Basketball T-Shirt",
+          "productPrice": 12,
+          "quantity": 4
+        }
+      ]
+    }
+  }
+}
+```
 
 ### PATCH /users/:userId
 
@@ -227,3 +291,7 @@ This route will be used to create a new order
 
 ADMIN
 This route will be used to edit order status when packed, delivered, or completed
+
+```
+
+```

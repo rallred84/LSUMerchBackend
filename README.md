@@ -15,20 +15,66 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 ### POST /users/register
 
 END USER
+
 This route is used to create a new user account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
 Body:
 (object, required) contains the following key/value pairs:
--email (string, required): the desired email for the new user
--password (string, required): the desired password for the new user
--firstName (string, required): the first name of the new user
--lastName (string, required): the last name of the new user
--isAdmin (boolean, required): default false, is the new user an admin?
+··email (string, required): the desired email for the new user
+··password (string, required): the desired password for the new user
+··firstName (string, required): the first name of the new user
+··lastName (string, required): the last name of the new user
+··isAdmin (boolean, required): default false, is the new user an admin?
 
 Returned Data
--token (string): the JSON Web Token which is used to authenticate the user with any future calls
--message (string): Thanks for signing up for our service.
--user (object): New user that was created
+··token (string): the JSON Web Token which is used to authenticate the user with any future calls
+··message (string): Thanks for signing up for our service.
+··user (object): New user that was created
+
+Sample Call
+
+```javascript
+const registerUser = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: 'superman27@gmail.com',
+          password: 'krypt0n0rbust',
+          firstName: 'Clark',
+          lastName: 'Kent',
+          isAdmin: false,
+        },
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+```
+
+Sample Result
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "Your account has been created Clark!",
+    "token": "xyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5MDY2ZGQ0MzkxNjAwTc1NTNlMDUiLCJ1c2VybmFtZSI6Im1hdHQiLCJpYXQiOjE1ODYwMzgzODF9.CTj4owBl0PB-G6G4E_1l6DS6_cVc0iKcMzBIWFUYM1p",
+    "user": {
+      "id": 5,
+      "email": "superman27@gmail.com"
+    }
+  }
+}
+```
 
 ### POST /users/login
 

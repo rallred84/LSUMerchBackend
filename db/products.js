@@ -69,7 +69,7 @@ async function updateProduct({ id, ...fields }) {
       rows: [product],
     } = await client.query(
       `
-    UPDATE routines
+    UPDATE products
     SET ${setString}
     WHERE id=${id}
     RETURNING *;

@@ -14,6 +14,7 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 
 ### POST /users/register
 
+END USER
 This route is used to create a new user account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
 Body:
@@ -31,6 +32,7 @@ Returned Data
 
 ### POST /users/login
 
+END USER
 This route is used for a user to login when they already have an account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
 Body:
@@ -45,6 +47,8 @@ Returned Data
 
 ### GET /users/profile
 
+END USER
+
 This route is used to grab an already logged in user's relevant data. It is mostly helpful for verifying the user has a valid token (and is thus logged in). You must pass a valid token with this request, or it will be rejected.
 
 Headers:
@@ -58,6 +62,8 @@ Returned Data
 -users' cart (from users_products table)
 
 ### PATCH /users/:userId
+
+END USER
 
 This route is used to update the user's personal information
 
@@ -79,11 +85,15 @@ Updates User (object)
 
 ### PATCH /users/:userId/cart
 
+END USER
+
 This route is used to update the user's cart
 
 ## PRODUCTS ENDPOINTS
 
 ### GET /products
+
+END USER
 
 This route is used to grab all products currently listed as inventory items
 
@@ -100,6 +110,8 @@ Returned Data
 +reviews
 
 ### POST /products
+
+ADMIN
 
 This route will be used to create individual products
 
@@ -119,6 +131,8 @@ Body:
 
 ### PATCH /products/:productId
 
+ADMIN
+
 This route will be used to edit individual products
 
 Headers:
@@ -137,6 +151,8 @@ Body:
 
 ### DELETE /products/:productId
 
+ADMIN
+
 This route will be used to delete individual products
 
 Headers:
@@ -147,6 +163,8 @@ Authorization (template literal,required): Bearer ${token}
 ## REVIEWS ENDPOINTS
 
 ### POST /reviews/:productId
+
+END USER
 
 This will be used to add a review to an individual product
 
@@ -162,6 +180,8 @@ Body:
 
 ### PATCH /reviews/:productId
 
+END USER
+
 This will be used to edit a review of an individual product
 
 Headers:
@@ -176,6 +196,8 @@ Body:
 
 ### DELETE /reviews/:productId
 
+END USER
+
 This will be used to delete a review of an individual product
 
 Headers:
@@ -185,8 +207,23 @@ Authorization (template literal,required): Bearer ${token}
 
 ## ORDERS ENDPOINTS
 
-GET all orders
+### GET /orders
 
-POST an individual order
+This will be a route used to get a list of all orders
+Add a time component??
+ADMIN
 
-PATCH an individual order
+### GET /orders/:userId
+
+ADMIN
+This will be a route used to get a list of all orders for one particular user
+
+### POST /orders
+
+END USER
+This route will be used to create a new order
+
+### PATCH /orders/:orderId
+
+ADMIN
+This route will be used to edit order status when packed, delivered, or completed

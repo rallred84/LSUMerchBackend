@@ -26,7 +26,7 @@ This route is used to create a new user account. On success, you will be given a
 ·lastName (string, required): the last name of the new user  
 ·isAdmin (boolean, required): default false, is the new user an admin?
 
-**Returned Data**
+**Returned Data**  
 ·token (string): the JSON Web Token which is used to authenticate the user with any future calls  
 ·message (string): Thanks for signing up for our service.  
 ·user (object): New user that was created
@@ -50,18 +50,33 @@ This route is used to create a new user account. On success, you will be given a
 
 ### POST /users/login
 
-END USER
+**END USER**  
 This route is used for a user to login when they already have an account. On success, you will be given a JSON Web Token to be passed to the server for requests requiring authentication.
 
-Body:
-(object, required) contains the following key/value pairs:
-email (string, required): the registered email for the user
-password (string, required): the matching password for the user
+**Body:**  
+**(object, required) contains the following key/value pairs:**  
+·email (string, required): the registered email for the user  
+·password (string, required): the matching password for the user
 
-Returned Data
--token (string): the JSON Web Token which is used to authenticate the user with any future calls
--message (string): You are logged in!
--user (object): New user that logged in
+**Returned Data**  
+·message (string): You are logged in!  
+·token (string): the JSON Web Token which is used to authenticate the user with any future calls  
+·user (object): New user that logged in
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "You are logged in! ",
+    "token": "xyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTg5MDY2ZGQ0MzkxNjAwTc1NTNlMDUiLCJ1c2VybmFtZSI6Im1hdHQiLCJpYXQiOjE1ODYwMzgzODF9.CTj4owBl0PB-G6G4E_1l6DS6_cVc0iKcMzBIWFUYM1p",
+    "user": {
+      "id": 5,
+      "email": "superman27@gmail.com"
+      //Additional user information
+    }
+  }
+}
+```
 
 ### GET /users/profile
 
@@ -245,3 +260,7 @@ This route will be used to create a new order
 
 ADMIN
 This route will be used to edit order status when packed, delivered, or completed
+
+```
+
+```

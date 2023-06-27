@@ -96,7 +96,7 @@ async function destroyProduct(id) {
 
     return products;
   } catch (error) {
-    throw error;
+    console.error(err);
   }
 }
 

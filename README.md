@@ -10,7 +10,12 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 
 # API DOCS
 
-## USERS ENDPOINTS
+[USERS](#users-endpoints)  
+[PRODUCTS](#products-endpoints)  
+[REVIEWS](#reviews-endpoints)  
+[ORDERS](#orders-endpoints)
+
+## <a name ="users-endpoints"></a>USERS ENDPOINTS
 
 ### POST /users/register
 
@@ -153,7 +158,7 @@ END USER
 
 This route is used to update the user's cart
 
-## PRODUCTS ENDPOINTS
+## <a name="products-endpoints"></a>PRODUCTS ENDPOINTS
 
 ### GET /products
 
@@ -224,7 +229,7 @@ Headers:
 Content-Type (string, required): application/json
 Authorization (template literal,required): Bearer ${token}
 
-## REVIEWS ENDPOINTS
+## <a name ="reviews-endpoints"></a>REVIEWS ENDPOINTS
 
 ### POST /reviews/:productId
 
@@ -269,7 +274,7 @@ Headers:
 Content-Type (string, required): application/json
 Authorization (template literal,required): Bearer ${token}
 
-## ORDERS ENDPOINTS
+## <a name ="orders-endpoints"></a>ORDERS ENDPOINTS
 
 ### GET /orders
 

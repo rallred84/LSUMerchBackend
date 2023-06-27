@@ -28,7 +28,7 @@ async function createTables() {
     await client.query(`
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     "firstName" VARCHAR(255) NOT NULL,
     "lastName" VARCHAR(255) NOT NULL,
@@ -91,28 +91,28 @@ async function createInitialUsers() {
   try {
     const usersToCreate = [
       {
-        username: 'SydneyCodes',
+        email: 'SydneyCodes@gmail.com',
         password: 'test',
         firstName: 'Sydney',
         lastName: 'Weakley',
         isAdmin: true,
       },
       {
-        username: 'RobertAlsoCodes',
+        email: 'RobertAlsoCodes@me.com',
         password: 'test',
         firstName: 'Robert',
         lastName: 'Allred',
         isAdmin: true,
       },
       {
-        username: 'MichaelAlsoAlsoCodes',
+        email: 'MichaelAlsoAlsoCodes@hotmail.com',
         password: 'test',
         firstName: 'Michael',
         lastName: 'Wilson',
         isAdmin: true,
       },
       {
-        username: 'EduardoAlsoAlsoAlsoCodes',
+        email: 'EduardoAlsoAlsoAlsoCodes@aol.com',
         password: 'test',
         firstName: 'Eduardo',
         lastName: 'Martin',

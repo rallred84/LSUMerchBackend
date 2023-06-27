@@ -9,7 +9,7 @@ usersRouter.use((req, res, next) => {
   next();
 });
 
-//POST /api/users
+//POST /users/register
 
 //Register New User
 
@@ -21,7 +21,7 @@ usersRouter.post('/register', async (req, res, next) => {
       const token = jwt.sign(
         {
           id: user.id,
-          username: user.username,
+          email: user.email,
         },
         process.env.JWT_SECRET,
         { expiresIn: '1w' }
@@ -45,6 +45,7 @@ usersRouter.post('/register', async (req, res, next) => {
   }
 });
 
+//POST / users/login
 //Login Existing User
 
 usersRouter.post('/login', async (req, res, next) => {
@@ -55,7 +56,7 @@ usersRouter.post('/login', async (req, res, next) => {
       const token = jwt.sign(
         {
           id: user.id,
-          username,
+          email,
         },
         process.env.JWT_SECRET,
         { expiresIn: '1w' }
@@ -69,8 +70,8 @@ usersRouter.post('/login', async (req, res, next) => {
       });
     } else {
       next({
-        name: 'WrongUsernameOrPassword',
-        message: 'Username or password is incorrect',
+        name: 'WrongEmailOrPassword',
+        message: 'Email or password is incorrect',
       });
     }
   } catch (err) {

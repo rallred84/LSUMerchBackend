@@ -1,25 +1,19 @@
 const client = require('./client');
 const bcrypt = require('bcrypt');
 
-async function createUser({
-  username,
-  password,
-  firstName,
-  lastName,
-  isAdmin,
-}) {
+async function createUser({ email, password, firstName, lastName, isAdmin }) {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const {
       rows: [newUser],
     } = await client.query(
       `
-        INSERT INTO users (username, password, "firstName", "lastName", "isAdmin")
+        INSERT INTO users (email, password, "firstName", "lastName", "isAdmin")
         VALUES ($1, $2, $3, $4, $5)
-        ON CONFLICT (username) DO NOTHING
+        ON CONFLICT (email) DO NOTHING
         RETURNING *;
         `,
-      [username, hashedPassword, firstName, lastName, isAdmin]
+      [email, hashedPassword, firstName, lastName, isAdmin]
     );
 
     if (newUser) {
@@ -53,16 +47,16 @@ async function getUserById(userId) {
   }
 }
 
-async function loginUser({ username, password }) {
+async function loginUser({ email, password }) {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
     SELECT * FROM users
-    WHERE username = $1
+    WHERE email = $1
   `,
-      [username]
+      [email]
     );
 
     const passwordsMatch = await bcrypt.compare(password, user.password);

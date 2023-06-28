@@ -55,7 +55,9 @@ module.exports = apiRouter;
 apiRouter.use((error, req, res, next) => {
   res.status(401).send({
     success: false,
-    message: error.message,
-    name: error.name,
+    error: {
+      message: error.message,
+      name: error.name,
+    },
   });
 });

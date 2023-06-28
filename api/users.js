@@ -29,9 +29,11 @@ usersRouter.post('/register', async (req, res, next) => {
 
       res.send({
         success: true,
-        message: `Your account has been created ${user.firstName}!`,
-        token,
-        user,
+        data: {
+          message: `Your account has been created ${user.firstName}!`,
+          token,
+          user,
+        },
       });
     } else {
       next({
@@ -56,7 +58,7 @@ usersRouter.post('/login', async (req, res, next) => {
       const token = jwt.sign(
         {
           id: user.id,
-          email,
+          email: user.email,
         },
         process.env.JWT_SECRET,
         { expiresIn: '1w' }
@@ -64,9 +66,11 @@ usersRouter.post('/login', async (req, res, next) => {
 
       res.send({
         success: true,
-        message: 'You are logged in!',
-        token,
-        user,
+        data: {
+          message: 'You are logged in!',
+          token,
+          user,
+        },
       });
     } else {
       next({

@@ -85,7 +85,9 @@ async function updateReview({ id, ...fields }) {
 
 async function destroyReview(id) {
   try {
-    const { rows: reviews } = await client.query(
+    const {
+      rows: [review],
+    } = await client.query(
       `
       DELETE FROM reviews 
       WHERE id=$1
@@ -94,7 +96,7 @@ async function destroyReview(id) {
       [id]
     );
 
-    return reviews;
+    return review;
   } catch (error) {
     console.error(err);
   }

@@ -36,7 +36,7 @@ async function getAllOrders() {
   }
 }
 
-async function getOrdersById(id) {
+async function getOrderById(id) {
   try {
     const {
       rows: [order],
@@ -85,4 +85,4 @@ async function updateOrder({ id, ...fields }) {
 
 //get by email when tables joined
 
-module.exports = { createOrder, getAllOrders, getOrdersById, updateOrder };
+module.exports = { createOrder, getAllOrders, getOrderById, updateOrder };

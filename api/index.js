@@ -1,21 +1,21 @@
-const express = require('express');
+const express = require("express");
 const apiRouter = express.Router();
-const { getUserById } = require('../db');
-const jwt = require('jsonwebtoken');
+const { getUserById } = require("../db");
+const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
 //GET /api/health
-apiRouter.get('/health', async (req, res) => {
+apiRouter.get("/health", async (req, res) => {
   res.status(200).send({
-    message: 'Router is healthy',
+    message: "Router is healthy",
   });
 });
 
 //AUTHENTICATE
 // In this section, we will run authentication so that any requests that require user authentication will not have to be recoded each time
 
-apiRouter.use('/', async (req, res, next) => {
-  const prefix = 'Bearer ';
+apiRouter.use("/", async (req, res, next) => {
+  const prefix = "Bearer ";
   const auth = req.headers.authorization;
   if (!auth) {
     next();
@@ -33,7 +33,7 @@ apiRouter.use('/', async (req, res, next) => {
     }
   } else {
     next({
-      name: 'AuthorizationHeaderError',
+      name: "AuthorizationHeaderError",
       message: `Authorization token must start with ${prefix}`,
     });
   }
@@ -43,8 +43,12 @@ apiRouter.use('/', async (req, res, next) => {
 // Will require and use individual routers for each path we set up
 
 //ROUTER: /api/users
-const usersRouter = require('./users');
-apiRouter.use('/users', usersRouter);
+const usersRouter = require("./users");
+apiRouter.use("/users", usersRouter);
+
+//ROUTER: /api/products
+const productsRouter = require("./products");
+apiRouter.use("/products", productsRouter);
 
 module.exports = apiRouter;
 

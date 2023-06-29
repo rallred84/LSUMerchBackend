@@ -1,7 +1,12 @@
 const express = require("express");
 const productsRouter = express.Router();
 
-const { getAllProducts, createProduct } = require("../db");
+const {
+  getAllProducts,
+  createProduct,
+  getProductById,
+  updateProduct,
+} = require("../db");
 
 const { requireUser, requireAdmin } = require("./utils");
 
@@ -37,13 +42,15 @@ productsRouter.get("/", async (req, res, next) => {
 
 // POST /products
 
-productsRouter.post("/", requireUser, requireAdmin, async (req, res, next) => {
+productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
   try {
     const product = await createProduct(req.body);
-    if (req.user) {
+    console.log(product);
+    if (req.user.isAdmin) {
       res.send({
         success: true,
         data: {
+          message: "Product added to inventory",
           product,
         },
       });
@@ -57,5 +64,7 @@ productsRouter.post("/", requireUser, requireAdmin, async (req, res, next) => {
     console.error(err);
   }
 });
+
+// PATCH /products/:productId
 
 module.exports = productsRouter;

@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const usersRouter = express.Router();
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const { createUser, loginUser } = require('../db');
+const { createUser, loginUser } = require("../db");
 
 usersRouter.use((req, res, next) => {
-  console.log('Making request to /api/users');
+  console.log("Making request to /api/users");
   next();
 });
 
@@ -13,7 +13,7 @@ usersRouter.use((req, res, next) => {
 
 //Register New User
 
-usersRouter.post('/register', async (req, res, next) => {
+usersRouter.post("/register", async (req, res, next) => {
   try {
     const user = await createUser(req.body);
     console.log(user);
@@ -24,7 +24,7 @@ usersRouter.post('/register', async (req, res, next) => {
           email: user.email,
         },
         process.env.JWT_SECRET,
-        { expiresIn: '1w' }
+        { expiresIn: "1w" }
       );
 
       res.send({
@@ -37,9 +37,9 @@ usersRouter.post('/register', async (req, res, next) => {
       });
     } else {
       next({
-        name: 'UserNotCreated',
+        name: "UserNotCreated",
         message:
-          'There was an error creating your account, please make sure all fields have been filled out',
+          "There was an error creating your account, please make sure all fields have been filled out",
       });
     }
   } catch (err) {
@@ -50,7 +50,7 @@ usersRouter.post('/register', async (req, res, next) => {
 //POST / users/login
 //Login Existing User
 
-usersRouter.post('/login', async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await loginUser(req.body);
     console.log(user);
@@ -61,21 +61,21 @@ usersRouter.post('/login', async (req, res, next) => {
           email: user.email,
         },
         process.env.JWT_SECRET,
-        { expiresIn: '1w' }
+        { expiresIn: "1w" }
       );
 
       res.send({
         success: true,
         data: {
-          message: 'You are logged in!',
+          message: "You are logged in!",
           token,
           user,
         },
       });
     } else {
       next({
-        name: 'WrongEmailOrPassword',
-        message: 'Email or password is incorrect',
+        name: "WrongEmailOrPassword",
+        message: "Email or password is incorrect",
       });
     }
   } catch (err) {

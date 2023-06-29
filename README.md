@@ -8,7 +8,7 @@ This app is going to be the back end of an e-commerce website designed to sell c
 
 This is part of the Capstone project for Fullstack Academy's 26 week part time web dev course covering HTML, CSS, JavaScript, React JS, Node JS, Express, PostgreSQL and more
 
-# API DOCS
+# <a name ="api-docs"></a>API DOCS
 
 [USERS](#users-endpoints)  
 [PRODUCTS](#products-endpoints)  
@@ -119,7 +119,8 @@ Includes additional keys "reviews" and "cart":
         {
           "productId": 6,
           "message": "This product was wonderful!!",
-          "rating": 9
+          "rating": 9,
+          "date": "2023-06-26"
         }
       ],
       "cart": [
@@ -135,7 +136,7 @@ Includes additional keys "reviews" and "cart":
 }
 ```
 
-### PATCH /users/:userId
+### PATCH /users/profile
 
 **END USER ROUTE**
 
@@ -152,7 +153,7 @@ Authorization (template literal, required): Bearer ${token}
 ·password (string, optional): the desired password for the updated user  
 ·firstName (string, optional): the first name of the updated user  
 ·lastName (string, optional): the last name of the updated user  
-°isAdmin (boolean, optional): is the updated user an admin?
+·isAdmin (boolean, optional): is the updated user an admin?
 
 **Returned Data**  
 ·message (string): Your account has been updated ${firstName}!  
@@ -174,9 +175,9 @@ Authorization (template literal, required): Bearer ${token}
 }
 ```
 
-### POST /users/:userId/cart
+### POST /users/cart
 
-END USER ROUTE
+**END USER ROUTE**
 
 This route is used to add an item to a user's cart
 
@@ -187,6 +188,7 @@ Authorization (template literal, required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
+·userId (number, required): The user's ID  
 ·productId (number, required): The product id of the item being added to the cart  
 ·quantity (number, required): The quantity of given products added to cart
 
@@ -211,7 +213,7 @@ Authorization (template literal, required): Bearer ${token}
 }
 ```
 
-### PATCH /users/:userId/cart
+### PATCH /users/cart
 
 END USER ROUTE
 
@@ -224,6 +226,7 @@ Authorization (template literal, required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
+·userId (number, required): The user's ID  
 ·productId (number, required): The product id of the item being added to the cart  
 ·quantity (number, required): The updated quantity of given products added to cart
 
@@ -248,9 +251,9 @@ Authorization (template literal, required): Bearer ${token}
 }
 ```
 
-### DELETE /users/:userId/cart
+### DELETE /users/cart
 
-END USER ROUTE
+**END USER ROUTE**
 
 This route is used to remove an item from a user's cart
 
@@ -287,9 +290,11 @@ Authorization (template literal, required): Bearer ${token}
 
 ## <a name="products-endpoints"></a>PRODUCTS ENDPOINTS
 
+[Go back to top of page](#api-docs)
+
 ### GET /products
 
-END USER ROUTE
+**END USER ROUTE**
 
 This route is used to grab all products currently listed as inventory items
 
@@ -456,6 +461,8 @@ Authorization (template literal,required): Bearer ${token}
 
 ## <a name ="reviews-endpoints"></a>REVIEWS ENDPOINTS
 
+[Go back to top of page](#api-docs)
+
 ### POST /reviews/:productId
 
 **END USER ROUTE**
@@ -468,62 +475,274 @@ Content-Type (string, required): application/json
 Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
-**(object, required) contains the following key/value pairs:**
+**(object, required) contains the following key/value pairs:**  
+·message (string, required): This will be the text associated with the review  
+·rating (number, required): This is the objects rating
 
--review (object, required)
-+message (string, required): This will be the text associated with the review
-+rating (number, required): This is the objects rating
+**Returned Data**  
+·message (string): Your review has been submitted
+·review (object): Review that was added
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "Your review has been submitted",
+    "review": {
+      "productId": 3,
+      "message": "This product sucks!",
+      "rating": 10,
+      "date": "2023-06-26"
+    }
+  }
+}
+```
 
 ### PATCH /reviews/:productId
 
-END USER ROUTE
+**END USER ROUTE**
 
 This will be used to edit a review of an individual product
 
-Headers:
-(object literal, required)
-Content-Type (string, required): application/json
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
 Authorization (template literal,required): Bearer ${token}
 
-Body:
--review (object, required)
-+message (string, optional): This will be the text associated with the review
-+rating (number, optional): This is the objects rating
+**Body:**  
+**(object, required) contains the following key/value pairs:**  
+·message (string, optional): This will be updated text associated with the review  
+·rating (number, optional): This is the objects rating
+
+**Returned Data**  
+·message (string): Your review has been updated
+·review (object): Review that was edited
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "Your review has been updated",
+    "review": {
+      "productId": 9,
+      "message": "This product is wonderful!",
+      "rating": 10,
+      "date": "2023-06-27"
+    }
+  }
+}
+```
 
 ### DELETE /reviews/:productId
 
-END USER ROUTE
+**END USER ROUTE**
 
 This will be used to delete a review of an individual product
 
-Headers:
-(object literal, required)
-Content-Type (string, required): application/json
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
 Authorization (template literal,required): Bearer ${token}
+
+**No Body Required**
+
+**Returned Data**  
+·message (string): Your review has been removed
+·review (object): Review that was removed
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "message": "Your review has been removed",
+    "review": {
+      "productId": 9,
+      "message": "This product is wonderful!",
+      "rating": 10,
+      "date": "2023-06-27"
+    }
+  }
+}
+```
 
 ## <a name ="orders-endpoints"></a>ORDERS ENDPOINTS
 
+[Go back to top of page](#api-docs)
+
 ### GET /orders
 
+**ADMIN ROUTE**
+
 This will be a route used to get a list of all orders
-Add a time component??
-ADMIN ROUTE
+
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
+Authorization (template literal,required): Bearer ${token}
+
+**No Body Required**
+
+**Returned Data**  
+orders (array): array of all orders
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "orders": [
+      {
+        "id": 1,
+        "userId": 2,
+        "price": 40,
+        "hasShipped": true,
+        "isComplete": false
+      },
+      {
+        "id": 2,
+        "userId": 3,
+        "price": 30,
+        "hasShipped": true,
+        "isComplete": true
+      }
+      //more orders
+    ]
+  }
+}
+```
 
 ### GET /orders/:userId
 
-ADMIN ROUTE
+**ADMIN ROUTE**  
 This will be a route used to get a list of all orders for one particular user
+
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
+Authorization (template literal,required): Bearer ${token}
+
+**No Body Required**
+
+**Returned Data**  
+orders (array): array of all orders for a particular user
+
+**Sample Result**
+
+```json
+{
+  "success": true,
+  "data": {
+    "orders": [
+      {
+        "id": 2,
+        "userId": 3,
+        "price": 40,
+        "hasShipped": true,
+        "isComplete": false
+      },
+      {
+        "id": 23,
+        "userId": 3,
+        "price": 30,
+        "hasShipped": true,
+        "isComplete": true
+      }
+      //more orders
+    ]
+  }
+}
+```
 
 ### POST /orders
 
-END USER ROUTE
+**END USER ROUTE**
+
 This route will be used to create a new order
+
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
+Authorization (template literal,required): Bearer ${token}
+
+**Body:**  
+**(object, required) contains the following key/value pairs:**
+products(array, required): Array of products from the user's cart that they are wanting to convert to an order.
+
+**Returned Data**  
+**order (object) containing the following key/value pairs**  
+id (number): Order ID number  
+message (string): Your order has been placed  
+totalPrice (number): A sum of the (price x quanity) for each item in the order  
+hasShipped (boolean, default false): Has the order shipped? This will be manually updated by admin  
+isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
+
+**Sample Result**
+
+```json
+{
+  "order": {
+    "id": 1,
+    "message": "Your order has been placed",
+    "totalPrice": 68,
+    "hasShipped": false,
+    "isComplete": false,
+    "products": [
+      {
+        "productId": 4,
+        "productDescription": "LSU Basketball T-Shirt",
+        "productPrice": 12,
+        "quantity": 4
+      },
+      {
+        "productId": 10,
+        "productDescription": "LSU Mug",
+        "productPrice": 10,
+        "quantity": 2
+      }
+    ]
+  }
+}
+```
 
 ### PATCH /orders/:orderId
 
-ADMIN ROUTE
+**ADMIN ROUTE**
+
 This route will be used to edit order status when packed, delivered, or completed
 
-```
+**Headers:**  
+**(object literal, required)**  
+Content-Type (string, required): application/json  
+Authorization (template literal,required): Bearer ${token}
 
+**Body:**  
+**(object, required) contains the following key/value pairs:**  
+hasShipped(boolean, optional): Has the order shipped?
+isComplete(boolean, optional): Is the order completed?
+
+**Returned Data**  
+**order (object) containing the following key/value pairs**  
+id (number): Order ID number  
+message (string): Order status has been updated  
+hasShipped (boolean, default false): Has the item shipped? This will be manually updated by admin  
+isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
+
+**Sample Result**
+
+```json
+{
+  "order": {
+    "id": 1,
+    "message": "Order status has been updated",
+    "hasShipped": true,
+    "isComplete": false
+  }
+}
 ```

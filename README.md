@@ -687,26 +687,29 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 
 ```json
 {
-  "order": {
-    "id": 1,
-    "message": "Your order has been placed",
-    "totalPrice": 68,
-    "hasShipped": false,
-    "isComplete": false,
-    "products": [
-      {
-        "productId": 4,
-        "productDescription": "LSU Basketball T-Shirt",
-        "productPrice": 12,
-        "quantity": 4
-      },
-      {
-        "productId": 10,
-        "productDescription": "LSU Mug",
-        "productPrice": 10,
-        "quantity": 2
-      }
-    ]
+  "success": true,
+  "data": {
+    "order": {
+      "id": 1,
+      "message": "Your order has been placed",
+      "totalPrice": 68,
+      "hasShipped": false,
+      "isComplete": false,
+      "products": [
+        {
+          "productId": 4,
+          "productDescription": "LSU Basketball T-Shirt",
+          "productPrice": 12,
+          "quantity": 4
+        },
+        {
+          "productId": 10,
+          "productDescription": "LSU Mug",
+          "productPrice": 10,
+          "quantity": 2
+        }
+      ]
+    }
   }
 }
 ```
@@ -738,11 +741,14 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 
 ```json
 {
-  "order": {
-    "id": 1,
-    "message": "Order status has been updated",
-    "hasShipped": true,
-    "isComplete": false
+  "success": true,
+  "data": {
+    "order": {
+      "id": 1,
+      "message": "Order status has been updated",
+      "hasShipped": true,
+      "isComplete": false
+    }
   }
 }
 ```

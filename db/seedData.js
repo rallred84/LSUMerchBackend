@@ -16,6 +16,7 @@ async function dropTables() {
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS addresses;
   DROP TABLE IF EXISTS orders;
+  DROP TYPE IF EXISTS status;
   DROP TABLE IF EXISTS categories;
   DROP TABLE IF EXISTS products;
   DROP TABLE IF EXISTS users;
@@ -50,12 +51,17 @@ async function createTables() {
     description TEXT NOT NULL
   );
 
+  CREATE TYPE status AS ENUM ('In Cart', 'Order Placed', 'Order Complete');
+
   CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    price MONEY NOT NULL,
-    "hasShipped" BOOLEAN DEFAULT false,
-    "isComplete" BOOLEAN DEFAULT false
+    "userId" INTEGER NOT NULL,
+    price MONEY,
+    "orderStatus" status default 'In Cart' NOT NULL
   );
+
+  CREATE UNIQUE INDEX ON orders ("userId")
+  WHERE "orderStatus" = 'In Cart';
 
   CREATE TABLE addresses (
     id SERIAL PRIMARY KEY,
@@ -200,19 +206,13 @@ async function createInitialOrders() {
   try {
     const ordersToCreate = [
       {
-        price: 40,
-        hasShipped: true,
-        isComplete: false,
+        userId: 3,
       },
       {
-        price: 210,
-        hasShipped: false,
-        isComplete: false,
+        userId: 7,
       },
       {
-        price: 10,
-        hasShipped: true,
-        isComplete: true,
+        userId: 4,
       },
     ];
 

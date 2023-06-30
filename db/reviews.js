@@ -1,16 +1,16 @@
 const client = require("./client");
 
-async function createReview({ message, rating }) {
+async function createReview({ creatorId, productId, message, rating }) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
-    INSERT INTO reviews (message, rating)
-    VALUES ($1, $2)
+    INSERT INTO reviews ("creatorId", "productId", message, rating)
+    VALUES ($1, $2, $3, $4)
     RETURNING *
     `,
-      [message, rating]
+      [creatorId, productId, message, rating]
     );
 
     if (review) {

@@ -67,6 +67,8 @@ async function createTables() {
 
   CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
+    "creatorId" INTEGER NOT NULL,
+    "productId" INTEGER NOT NULL,
     message TEXT NOT NULL,
     rating INTEGER NOT NULL,
     date DATE DEFAULT CURRENT_DATE NOT NULL
@@ -265,11 +267,15 @@ async function createInitialReviews() {
   try {
     const reviewsToCreate = [
       {
+        creatorId: 2,
+        productId: 4,
         message:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         rating: 3,
       },
       {
+        creatorId: 3,
+        productId: 9,
         message:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         rating: 1,

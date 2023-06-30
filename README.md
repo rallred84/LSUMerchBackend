@@ -476,6 +476,8 @@ Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
+·creatorId (number, required): The id of the user leaving the review
+·productId (number, required): The id of the product the user is leaving a review about
 ·message (string, required): This will be the text associated with the review  
 ·rating (number, required): This is the objects rating
 
@@ -491,6 +493,8 @@ Authorization (template literal,required): Bearer ${token}
   "data": {
     "message": "Your review has been submitted",
     "review": {
+      "id": 3,
+      "creatorId": 2,
       "productId": 3,
       "message": "This product sucks!",
       "rating": 10,

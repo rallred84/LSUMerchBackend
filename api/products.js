@@ -6,6 +6,7 @@ const {
   createProduct,
   getProductById,
   updateProduct,
+  destroyProduct,
 } = require("../db");
 
 const { requireUser, requireAdmin } = require("./utils");
@@ -57,7 +58,7 @@ productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
     } else {
       next({
         name: "UnauthorizedError",
-        message: "You must be logged in to perform this action",
+        message: "You must be Admin to perform this action",
       });
     }
   } catch (err) {
@@ -66,5 +67,77 @@ productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
 });
 
 // PATCH /products/:productId
+
+productsRouter.patch(
+  "/:productId",
+  requireUser,
+  requireAdmin,
+  async (req, res, next) => {
+    const { productId } = req.params;
+    const { name, description, price, quantity, size } = req.body;
+
+    try {
+      const product = await getProductById(productId);
+
+      const updatedProduct = await updateProduct({
+        id: productId,
+        name,
+        description,
+        price,
+        quantity,
+        size,
+      });
+
+      if (req.user.isAdmin) {
+        res.send({
+          success: true,
+          data: {
+            message: "Product has been updated",
+            updatedProduct,
+          },
+        });
+      } else {
+        next({
+          name: "UnauthorizedError",
+          message: "You must be Admin to perform this action",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
+
+productsRouter.delete(
+  "/:productId",
+  requireUser,
+  requireAdmin,
+  async (req, res, next) => {
+    const { productId } = req.params;
+
+    try {
+      const product = await getProductById(productId);
+
+      const deletedProduct = await destroyProduct(productId);
+
+      if (req.user.isAdmin) {
+        res.send({
+          success: true,
+          data: {
+            message: "Product has been deleted from inventory",
+            deletedProduct,
+          },
+        });
+      } else {
+        next({
+          name: "UnauthorizedError",
+          message: "You must be Admin to perform this action",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
 
 module.exports = productsRouter;

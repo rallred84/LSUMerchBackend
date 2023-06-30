@@ -27,4 +27,8 @@ reviewsRouter.post("/:productId", async (req, res, next) => {
   }
 });
 
+// PATCH /reviews/:productId
+
+// DELETE /reviews/:productId
+
 module.exports = reviewsRouter;

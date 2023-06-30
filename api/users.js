@@ -83,4 +83,8 @@ usersRouter.post("/login", async (req, res, next) => {
   }
 });
 
+//GET /users/profile
+
+//PATCH /users/profile
+
 module.exports = usersRouter;

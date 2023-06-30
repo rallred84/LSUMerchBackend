@@ -108,6 +108,8 @@ productsRouter.patch(
   }
 );
 
+// DELETE /products/:productId
+
 productsRouter.delete(
   "/:productId",
   requireUser,

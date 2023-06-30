@@ -28,7 +28,7 @@ async function createTables() {
     await client.query(`
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     "firstName" VARCHAR(255) NOT NULL,
     "lastName" VARCHAR(255) NOT NULL,
@@ -67,6 +67,8 @@ async function createTables() {
 
   CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
+    "creatorId" INTEGER NOT NULL,
+    "productId" INTEGER NOT NULL,
     message TEXT NOT NULL,
     rating INTEGER NOT NULL,
     date DATE DEFAULT CURRENT_DATE NOT NULL
@@ -91,29 +93,29 @@ async function createInitialUsers() {
   try {
     const usersToCreate = [
       {
-        username: "SydneyCodes",
-        password: "jdsff",
+        email: "SydneyCodes@gmail.com",
+        password: "test",
         firstName: "Sydney",
         lastName: "Weakley",
         isAdmin: true,
       },
       {
-        username: "RobertAlsoCodes",
-        password: "jdsff",
+        email: "RobertAlsoCodes@me.com",
+        password: "test",
         firstName: "Robert",
         lastName: "Allred",
         isAdmin: true,
       },
       {
-        username: "MichalAlsoAlsoCodes",
-        password: "jdsff",
+        email: "MichaelAlsoAlsoCodes@hotmail.com",
+        password: "test",
         firstName: "Michael",
         lastName: "Wilson",
         isAdmin: true,
       },
       {
-        username: "EduardoAlsoAlsoAlsoCodes",
-        password: "jdsff",
+        email: "EduardoAlsoAlsoAlsoCodes@aol.com",
+        password: "test",
         firstName: "Eduardo",
         lastName: "Martin",
         isAdmin: true,
@@ -265,11 +267,15 @@ async function createInitialReviews() {
   try {
     const reviewsToCreate = [
       {
+        creatorId: 2,
+        productId: 4,
         message:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         rating: 3,
       },
       {
+        creatorId: 3,
+        productId: 9,
         message:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         rating: 1,

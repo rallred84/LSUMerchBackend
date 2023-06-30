@@ -69,7 +69,7 @@ async function updateReview({ id, ...fields }) {
       rows: [review],
     } = await client.query(
       `
-    UPDATE products
+    UPDATE reviews
     SET ${setString}
     WHERE id=${id}
     RETURNING *;
@@ -78,7 +78,7 @@ async function updateReview({ id, ...fields }) {
     );
 
     return review;
-  } catch (error) {
+  } catch (err) {
     console.error(err);
   }
 }
@@ -97,7 +97,7 @@ async function destroyReview(id) {
     );
 
     return review;
-  } catch (error) {
+  } catch (err) {
     console.error(err);
   }
 }

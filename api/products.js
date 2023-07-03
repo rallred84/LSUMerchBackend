@@ -74,18 +74,11 @@ productsRouter.patch(
   requireAdmin,
   async (req, res, next) => {
     const { productId } = req.params;
-    const { name, description, price, quantity, size } = req.body;
 
     try {
-      const product = await getProductById(productId);
-
       const updatedProduct = await updateProduct({
         id: productId,
-        name,
-        description,
-        price,
-        quantity,
-        size,
+        ...req.body,
       });
 
       if (req.user.isAdmin) {
@@ -93,7 +86,7 @@ productsRouter.patch(
           success: true,
           data: {
             message: "Product has been updated",
-            updatedProduct,
+            product: updatedProduct,
           },
         });
       } else {

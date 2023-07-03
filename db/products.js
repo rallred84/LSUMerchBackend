@@ -78,7 +78,7 @@ async function updateProduct({ id, ...fields }) {
     );
 
     return product;
-  } catch (error) {
+  } catch (err) {
     console.error(err);
   }
 }

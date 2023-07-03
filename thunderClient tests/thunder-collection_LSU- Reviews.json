@@ -1,0 +1,32 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU- Reviews",
+    "dateExported": "2023-07-03T01:44:59.812Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f09e15fe-9a6b-4531-9af7-12c514c67df3",
+            "colId": "8c4ec630-6fb3-4375-9ebb-3e3f713703a7",
+            "containerId": "",
+            "name": "Create Review",
+            "url": "localhost:3000/api/reviews/5",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-03T01:22:09.211Z",
+            "modified": "2023-07-03T01:22:09.211Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"message\": \"This is great!\",\n  \"rating\": 10\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzQ1OTU4LCJleHAiOjE2ODg5NTA3NTh9._kpYxEzJTv3odlns7f2MC6JpJqXD6lp0NzARSXoX1eY"
+            },
+            "tests": []
+        }
+    ]
+}

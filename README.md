@@ -175,25 +175,25 @@ Authorization (template literal, required): Bearer ${token}
 }
 ```
 
-### POST /users/cart
+<!-- ### POST /users/cart
 
 **END USER ROUTE**
 
 This route is used to add an item to a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user's ID  
-·productId (number, required): The product id of the item being added to the cart  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user's ID
+·productId (number, required): The product id of the item being added to the cart
 ·quantity (number, required): The quantity of given products added to cart
 
-**Returned Data**  
-·message (string): Item has been added to cart  
+**Returned Data**
+·message (string): Item has been added to cart
 ·product (object): The item that was added to the cart
 
 **Sample Result**
@@ -219,19 +219,19 @@ END USER ROUTE
 
 This route is used to change the quantity of an item in a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user's ID  
-·productId (number, required): The product id of the item being added to the cart  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user's ID
+·productId (number, required): The product id of the item being added to the cart
 ·quantity (number, required): The updated quantity of given products added to cart
 
-**Returned Data**  
-·message (string): Quantity has been updated on item in your cart  
+**Returned Data**
+·message (string): Quantity has been updated on item in your cart
 ·product (object): The item in the cart that was edited
 
 **Sample Result**
@@ -257,17 +257,17 @@ Authorization (template literal, required): Bearer ${token}
 
 This route is used to remove an item from a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user id for the user the cart belongs to  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user id for the user the cart belongs to
 ·productId (number, required): The product id of the item being added to the cart
 
-**Returned Data**  
+**Returned Data**
 ·message (string): Item has been removed from your cart
 ·product (object): The item in the cart that was removed
 
@@ -286,7 +286,7 @@ Authorization (template literal, required): Bearer ${token}
     }
   }
 }
-```
+``` -->
 
 ## <a name="products-endpoints"></a>PRODUCTS ENDPOINTS
 
@@ -399,7 +399,7 @@ Authorization (template literal,required): Bearer ${token}
 ·size (string, optional): Size of product being added, if applies
 
 **Returned Data**  
-·message (string): Product has been updated
+·message (string): Product has been updated  
 ·product (object): Updated product
 
 **Sample Result**

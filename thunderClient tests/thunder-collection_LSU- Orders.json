@@ -1,0 +1,59 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU- Orders",
+    "dateExported": "2023-07-03T01:44:40.162Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "146ff546-7f6c-45b2-b42a-e6dbb6d35445",
+            "colId": "a5f39d64-068e-4c86-920a-ec609a6248a9",
+            "containerId": "",
+            "name": "Get All User's Orders",
+            "url": "localhost:3000/api/orders/2",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-03T01:21:32.452Z",
+            "modified": "2023-07-03T01:21:32.452Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MTAwNTE5LCJleHAiOjE2ODg3MDUzMTl9.VqrEKkq0cW_GGYuYqzaf3CYI2W-VXTiYtx_8cVcJIyI"
+            },
+            "tests": []
+        },
+        {
+            "_id": "b9fca696-38b8-4990-975b-f3fe74d3105f",
+            "colId": "a5f39d64-068e-4c86-920a-ec609a6248a9",
+            "containerId": "",
+            "name": "Create New Order",
+            "url": "localhost:3000/api/orders",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-03T01:21:34.311Z",
+            "modified": "2023-07-03T01:21:34.311Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzQ1OTU4LCJleHAiOjE2ODg5NTA3NTh9._kpYxEzJTv3odlns7f2MC6JpJqXD6lp0NzARSXoX1eY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "03b1199c-e4b6-4be9-9574-3d1200ba2dc0",
+            "colId": "a5f39d64-068e-4c86-920a-ec609a6248a9",
+            "containerId": "",
+            "name": "Get All Orders",
+            "url": "localhost:3000/api/orders",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-07-03T01:21:36.249Z",
+            "modified": "2023-07-03T01:21:36.249Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

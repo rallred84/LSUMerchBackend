@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU-  Users",
+    "dateExported": "2023-07-03T01:44:12.563Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "415f0cc0-2e65-4d20-94dc-1d42e7d1963d",
+            "colId": "06c3861c-d617-4534-ad42-b44c285083fd",
+            "containerId": "",
+            "name": "Login User",
+            "url": "localhost:3000/api/users/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-06-30T04:23:29.070Z",
+            "modified": "2023-06-30T04:23:29.070Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"email\": \"RobertAlsoCodes@me.com\",\n \"password\": \"test\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

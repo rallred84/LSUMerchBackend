@@ -55,13 +55,20 @@ ordersRouter.get(
 ordersRouter.post("/", requireUser, async (req, res, next) => {
   try {
     const newOrder = await createOrder({ userId: req.user.id });
-    res.send({
-      success: true,
-      data: {
-        message: "New Persistant Cart Created",
-        order: newOrder,
-      },
-    });
+    if (newOrder) {
+      res.send({
+        success: true,
+        data: {
+          message: "New Persistant Cart Created",
+          order: newOrder,
+        },
+      });
+    } else {
+      next({
+        message: "Cart already exists for this user",
+        name: "CartNotCreated",
+      });
+    }
   } catch (err) {
     console.error(err);
   }

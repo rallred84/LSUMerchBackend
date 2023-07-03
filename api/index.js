@@ -70,8 +70,8 @@ apiRouter.use((error, req, res, next) => {
   res.status(401).send({
     success: false,
     error: {
-      message: error.message,
       name: error.name,
+      message: error.message,
     },
   });
 });

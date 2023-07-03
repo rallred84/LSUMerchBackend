@@ -14,6 +14,7 @@ async function createOrder({ userId }) {
     );
 
     if (order) {
+      order.products = [];
       return order;
     }
   } catch (err) {

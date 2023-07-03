@@ -645,20 +645,17 @@ orders (array): array of all orders for a particular user
   "data": {
     "orders": [
       {
-        "id": 2,
-        "userId": 3,
-        "price": 40,
-        "hasShipped": true,
-        "isComplete": false
+        "id": 22,
+        "userId": 2,
+        "price": null,
+        "orderStatus": "Order Complete"
       },
       {
-        "id": 23,
-        "userId": 3,
-        "price": 30,
-        "hasShipped": true,
-        "isComplete": true
+        "id": 24,
+        "userId": 2,
+        "price": null,
+        "orderStatus": "In Cart"
       }
-      //more orders
     ]
   }
 }
@@ -668,7 +665,7 @@ orders (array): array of all orders for a particular user
 
 **END USER ROUTE**
 
-This route will be used to create a new order
+This route will be used to create a new order. The default status of every new order created will be an order with a status of "In Cart" and no products.
 
 **Headers:**  
 **(object literal, required)**  
@@ -677,15 +674,16 @@ Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**
-products(array, required): Array of products from the user's cart that they are wanting to convert to an order.
+userId (number, required): The user ID of the user who is starting a new cart.
 
 **Returned Data**  
-**order (object) containing the following key/value pairs**  
-id (number): Order ID number  
-message (string): Your order has been placed  
-totalPrice (number): A sum of the (price x quanity) for each item in the order  
-hasShipped (boolean, default false): Has the order shipped? This will be manually updated by admin  
-isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
+·message: New Persistant Cart Created  
+·order (object) containing the following key/value pairs  
+···id (number): Order ID number  
+···userId (number): The user ID of the user the cart belongs to
+···totalPrice (number, default null): A sum of the (price x quanity) for each item in the order  
+···orderStatus (enumerated list, default "In Cart" ): The current status of the order  
+···products (array, default empty): A list of all products included in order
 
 **Sample Result**
 
@@ -693,26 +691,13 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 {
   "success": true,
   "data": {
+    "message": "New Persistant Cart Created",
     "order": {
-      "id": 1,
-      "message": "Your order has been placed",
-      "totalPrice": 68,
-      "hasShipped": false,
-      "isComplete": false,
-      "products": [
-        {
-          "productId": 4,
-          "productDescription": "LSU Basketball T-Shirt",
-          "productPrice": 12,
-          "quantity": 4
-        },
-        {
-          "productId": 10,
-          "productDescription": "LSU Mug",
-          "productPrice": 10,
-          "quantity": 2
-        }
-      ]
+      "id": 24,
+      "userId": 2,
+      "price": null,
+      "orderStatus": "In Cart",
+      "products": []
     }
   }
 }
@@ -720,25 +705,25 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 
 ### PATCH /orders/:orderId
 
-**ADMIN ROUTE**
+<!-- **ADMIN ROUTE**
 
 This route will be used to edit order status when packed, delivered, or completed
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal,required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
+**Body:**
+**(object, required) contains the following key/value pairs:**
 hasShipped(boolean, optional): Has the order shipped?
 isComplete(boolean, optional): Is the order completed?
 
-**Returned Data**  
-**order (object) containing the following key/value pairs**  
-id (number): Order ID number  
-message (string): Order status has been updated  
-hasShipped (boolean, default false): Has the item shipped? This will be manually updated by admin  
+**Returned Data**
+**order (object) containing the following key/value pairs**
+id (number): Order ID number
+message (string): Order status has been updated
+hasShipped (boolean, default false): Has the item shipped? This will be manually updated by admin
 isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
 
 **Sample Result**
@@ -755,4 +740,4 @@ isComplete (boolean, default false): Has the order been completed? This will be 
     }
   }
 }
-```
+``` -->

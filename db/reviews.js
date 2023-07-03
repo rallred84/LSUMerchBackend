@@ -55,7 +55,9 @@ async function getReviewById(id) {
   }
 }
 
-async function updateReview({ id, ...fields }) {
+async function updateReview({ productId, ...fields }) {
+  //Add a check that editer is the same user are the review creator
+
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
@@ -71,7 +73,7 @@ async function updateReview({ id, ...fields }) {
       `
     UPDATE reviews
     SET ${setString}
-    WHERE id=${id}
+    WHERE "productId"=${productId}
     RETURNING *;
   `,
       Object.values(fields)
@@ -83,17 +85,17 @@ async function updateReview({ id, ...fields }) {
   }
 }
 
-async function destroyReview(id) {
+async function destroyReview(productId) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
       DELETE FROM reviews 
-      WHERE id=$1
+      WHERE "productId"=$1
       RETURNING *;
     `,
-      [id]
+      [productId]
     );
 
     return review;

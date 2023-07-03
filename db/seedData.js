@@ -77,7 +77,8 @@ async function createTables() {
     "productId" INTEGER NOT NULL,
     message TEXT NOT NULL,
     rating INTEGER NOT NULL,
-    date DATE DEFAULT CURRENT_DATE NOT NULL
+    date DATE DEFAULT CURRENT_DATE NOT NULL,
+    UNIQUE ("creatorId", "productId")
   );
   `);
     console.log("Tables built");

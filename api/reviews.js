@@ -45,10 +45,8 @@ reviewsRouter.patch("/:productId", requireUser, async (req, res, next) => {
 
   try {
     const updatedReview = await updateReview({
-      creatorId: req.user.id,
       productId,
-      message,
-      rating,
+      ...req.body,
     });
 
     if (updatedReview) {
@@ -83,7 +81,7 @@ reviewsRouter.delete("/:productId", requireUser, async (req, res, next) => {
         success: true,
         data: {
           message: "Your review has been removed",
-          deletedReview,
+          review: deletedReview,
         },
       });
     } else {

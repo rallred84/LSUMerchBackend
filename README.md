@@ -96,6 +96,8 @@ This route is used to grab an already logged in user's relevant data. It is most
 ·Content-Type (string, required): application/json  
 ·Authorization (template literal, required): Bearer ${token}
 
+**No Body Required**
+
 **Returned Data**  
 ·user (object): Logged In User  
 Includes additional keys "reviews" and "cart":  
@@ -148,12 +150,11 @@ Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
 **Body:**  
-**(object, required) contains the following key/value pairs:**
+**(object, required) contains the following key/value pairs:**  
 ·email (string, optional): the desired email for the updated user  
 ·password (string, optional): the desired password for the updated user  
 ·firstName (string, optional): the first name of the updated user  
-·lastName (string, optional): the last name of the updated user  
-·isAdmin (boolean, optional): is the updated user an admin?
+·lastName (string, optional): the last name of the updated user
 
 **Returned Data**  
 ·message (string): Your account has been updated ${firstName}!  
@@ -175,25 +176,25 @@ Authorization (template literal, required): Bearer ${token}
 }
 ```
 
-### POST /users/cart
+<!-- ### POST /users/cart
 
 **END USER ROUTE**
 
 This route is used to add an item to a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user's ID  
-·productId (number, required): The product id of the item being added to the cart  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user's ID
+·productId (number, required): The product id of the item being added to the cart
 ·quantity (number, required): The quantity of given products added to cart
 
-**Returned Data**  
-·message (string): Item has been added to cart  
+**Returned Data**
+·message (string): Item has been added to cart
 ·product (object): The item that was added to the cart
 
 **Sample Result**
@@ -219,19 +220,19 @@ END USER ROUTE
 
 This route is used to change the quantity of an item in a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user's ID  
-·productId (number, required): The product id of the item being added to the cart  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user's ID
+·productId (number, required): The product id of the item being added to the cart
 ·quantity (number, required): The updated quantity of given products added to cart
 
-**Returned Data**  
-·message (string): Quantity has been updated on item in your cart  
+**Returned Data**
+·message (string): Quantity has been updated on item in your cart
 ·product (object): The item in the cart that was edited
 
 **Sample Result**
@@ -257,17 +258,17 @@ Authorization (template literal, required): Bearer ${token}
 
 This route is used to remove an item from a user's cart
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
-·userId (number, required): The user id for the user the cart belongs to  
+**Body:**
+**(object, required) contains the following key/value pairs:**
+·userId (number, required): The user id for the user the cart belongs to
 ·productId (number, required): The product id of the item being added to the cart
 
-**Returned Data**  
+**Returned Data**
 ·message (string): Item has been removed from your cart
 ·product (object): The item in the cart that was removed
 
@@ -286,7 +287,7 @@ Authorization (template literal, required): Bearer ${token}
     }
   }
 }
-```
+``` -->
 
 ## <a name="products-endpoints"></a>PRODUCTS ENDPOINTS
 
@@ -316,7 +317,7 @@ This route is used to grab all products currently listed as inventory items
         "description": "Lorem ipsum dolor",
         //image information
         "price": 10,
-        "quantity": 3,
+        "stockQuantity": 3,
         "size": null
       },
       {
@@ -325,7 +326,7 @@ This route is used to grab all products currently listed as inventory items
         "description": "Lorem ipsum dolor",
         //image information
         "price": 8,
-        "quantity": 2,
+        "stockQuantity": 2,
         "size": null
       }
       //more products
@@ -371,7 +372,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 10,
-      "quantity": 12,
+      "stockQuantity": 12,
       "size": null
     }
   }
@@ -395,11 +396,11 @@ Authorization (template literal,required): Bearer ${token}
 ·description (string, optional): Description of the product being added  
 ·image (**NEED TO FIGURE THIS OUT**)  
 ·price (number, optional): Price of product being added  
-·quantity (number, optional): Amount of product in inventory  
+·stockQuantity (number, optional): Amount of product in inventory  
 ·size (string, optional): Size of product being added, if applies
 
 **Returned Data**  
-·message (string): Product has been updated
+·message (string): Product has been updated  
 ·product (object): Updated product
 
 **Sample Result**
@@ -415,7 +416,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 11,
-      "quantity": 10,
+      "stockQuantity": 10,
       "size": null
     }
   }
@@ -452,7 +453,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 11,
-      "quantity": 10,
+      "stockQuantity": 10,
       "size": null
     }
   }
@@ -471,18 +472,16 @@ This will be used to add a review to an individual product
 
 **Headers:**  
 **(object literal, required)**  
-Content-Type (string, required): application/json
-Authorization (template literal,required): Bearer ${token}
+Content-Type (string, required): application/json  
+Authorization (template literal,required): Bearer ${token} (_Authorization will provide the creatorId_)
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
-·creatorId (number, required): The id of the user leaving the review
-·productId (number, required): The id of the product the user is leaving a review about
 ·message (string, required): This will be the text associated with the review  
 ·rating (number, required): This is the objects rating
 
 **Returned Data**  
-·message (string): Your review has been submitted
+·message (string): Your review has been submitted  
 ·review (object): Review that was added
 
 **Sample Result**
@@ -555,7 +554,7 @@ Authorization (template literal,required): Bearer ${token}
 **No Body Required**
 
 **Returned Data**  
-·message (string): Your review has been removed
+·message (string): Your review has been removed  
 ·review (object): Review that was removed
 
 **Sample Result**
@@ -566,10 +565,12 @@ Authorization (template literal,required): Bearer ${token}
   "data": {
     "message": "Your review has been removed",
     "review": {
-      "productId": 9,
-      "message": "This product is wonderful!",
+      "id": 13,
+      "creatorId": 3,
+      "productId": 2,
+      "message": "This is great!",
       "rating": 10,
-      "date": "2023-06-27"
+      "date": "2023-07-03T05:00:00.000Z"
     }
   }
 }
@@ -606,15 +607,13 @@ orders (array): array of all orders
         "id": 1,
         "userId": 2,
         "price": 40,
-        "hasShipped": true,
-        "isComplete": false
+        "orderStatus": "In Cart"
       },
       {
         "id": 2,
         "userId": 3,
         "price": 30,
-        "hasShipped": true,
-        "isComplete": true
+        "orderStatus": "Order Complete"
       }
       //more orders
     ]
@@ -645,20 +644,17 @@ orders (array): array of all orders for a particular user
   "data": {
     "orders": [
       {
-        "id": 2,
-        "userId": 3,
-        "price": 40,
-        "hasShipped": true,
-        "isComplete": false
+        "id": 22,
+        "userId": 2,
+        "price": null,
+        "orderStatus": "Order Complete"
       },
       {
-        "id": 23,
-        "userId": 3,
-        "price": 30,
-        "hasShipped": true,
-        "isComplete": true
+        "id": 24,
+        "userId": 2,
+        "price": null,
+        "orderStatus": "In Cart"
       }
-      //more orders
     ]
   }
 }
@@ -668,24 +664,23 @@ orders (array): array of all orders for a particular user
 
 **END USER ROUTE**
 
-This route will be used to create a new order
+This route will be used to create a new order. The default status of every new order created will be an order with a status of "In Cart" and no products.
 
 **Headers:**  
 **(object literal, required)**  
 Content-Type (string, required): application/json  
-Authorization (template literal,required): Bearer ${token}
+Authorization (template literal,required): Bearer ${token} (_Authorization will provide the userId_)
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**
-products(array, required): Array of products from the user's cart that they are wanting to convert to an order.
+**No Body Required**
 
 **Returned Data**  
-**order (object) containing the following key/value pairs**  
-id (number): Order ID number  
-message (string): Your order has been placed  
-totalPrice (number): A sum of the (price x quanity) for each item in the order  
-hasShipped (boolean, default false): Has the order shipped? This will be manually updated by admin  
-isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
+·message: New Persistant Cart Created  
+·order (object) containing the following key/value pairs  
+···id (number): Order ID number  
+···userId (number): The user ID of the user the cart belongs to
+···totalPrice (number, default null): A sum of the (price x quanity) for each item in the order  
+···orderStatus (enumerated list, default "In Cart" ): The current status of the order  
+···products (array, default empty): A list of all products included in order
 
 **Sample Result**
 
@@ -693,26 +688,13 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 {
   "success": true,
   "data": {
+    "message": "New Persistant Cart Created",
     "order": {
-      "id": 1,
-      "message": "Your order has been placed",
-      "totalPrice": 68,
-      "hasShipped": false,
-      "isComplete": false,
-      "products": [
-        {
-          "productId": 4,
-          "productDescription": "LSU Basketball T-Shirt",
-          "productPrice": 12,
-          "quantity": 4
-        },
-        {
-          "productId": 10,
-          "productDescription": "LSU Mug",
-          "productPrice": 10,
-          "quantity": 2
-        }
-      ]
+      "id": 24,
+      "userId": 2,
+      "price": null,
+      "orderStatus": "In Cart",
+      "products": []
     }
   }
 }
@@ -720,25 +702,25 @@ isComplete (boolean, default false): Has the order been completed? This will be 
 
 ### PATCH /orders/:orderId
 
-**ADMIN ROUTE**
+<!-- **ADMIN ROUTE**
 
 This route will be used to edit order status when packed, delivered, or completed
 
-**Headers:**  
-**(object literal, required)**  
-Content-Type (string, required): application/json  
+**Headers:**
+**(object literal, required)**
+Content-Type (string, required): application/json
 Authorization (template literal,required): Bearer ${token}
 
-**Body:**  
-**(object, required) contains the following key/value pairs:**  
+**Body:**
+**(object, required) contains the following key/value pairs:**
 hasShipped(boolean, optional): Has the order shipped?
 isComplete(boolean, optional): Is the order completed?
 
-**Returned Data**  
-**order (object) containing the following key/value pairs**  
-id (number): Order ID number  
-message (string): Order status has been updated  
-hasShipped (boolean, default false): Has the item shipped? This will be manually updated by admin  
+**Returned Data**
+**order (object) containing the following key/value pairs**
+id (number): Order ID number
+message (string): Order status has been updated
+hasShipped (boolean, default false): Has the item shipped? This will be manually updated by admin
 isComplete (boolean, default false): Has the order been completed? This will be manually updated by admin
 
 **Sample Result**
@@ -755,4 +737,4 @@ isComplete (boolean, default false): Has the order been completed? This will be 
     }
   }
 }
-```
+``` -->

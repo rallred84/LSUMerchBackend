@@ -1,0 +1,59 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU- Orders",
+    "dateExported": "2023-07-03T23:26:42.800Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "894db863-c396-45b8-88f1-464f5b1de468",
+            "colId": "c66463ba-4225-4f7b-91f9-ea269ba88023",
+            "containerId": "",
+            "name": "Get All Orders (GET /orders)",
+            "url": "localhost:3000/api/orders",
+            "method": "GET",
+            "sortNum": 5000,
+            "created": "2023-07-03T01:50:24.321Z",
+            "modified": "2023-07-03T01:50:24.321Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "cb69f549-73d2-4ac3-a9f2-998c6c001ea3",
+            "colId": "c66463ba-4225-4f7b-91f9-ea269ba88023",
+            "containerId": "",
+            "name": "Get All User's Orders (GET /orders/:userId)",
+            "url": "localhost:3000/api/orders/3",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-03T01:50:24.319Z",
+            "modified": "2023-07-03T23:11:13.454Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4NDI1ODMyLCJleHAiOjE2ODkwMzA2MzJ9.IcpHIopEhSzchCPynpT_dlEGjbkB46_59zx_oMtl4Z8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "703a1fde-36ab-4dfc-9cd1-d8dd58fbf5d5",
+            "colId": "c66463ba-4225-4f7b-91f9-ea269ba88023",
+            "containerId": "",
+            "name": "Create New Order (POST /orders)",
+            "url": "localhost:3000/api/orders",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-03T01:50:24.320Z",
+            "modified": "2023-07-03T23:25:44.225Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYWxscmVkODQ1NkBnbWFpbC5jb20iLCJpYXQiOjE2ODg0MjY3MTcsImV4cCI6MTY4OTAzMTUxN30.27gTfqoe1a5Otd625FKBO8GCI8pGIg4-sYaDMcCQxSg"
+            },
+            "tests": []
+        }
+    ]
+}

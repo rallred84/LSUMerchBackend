@@ -1,0 +1,79 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU-  Users",
+    "dateExported": "2023-07-03T23:26:08.366Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "c210a1ed-ed63-44eb-b3ff-92854343a137",
+            "colId": "da440f55-b4b6-446e-bc6c-a175e1b4702c",
+            "containerId": "",
+            "name": "Register User (POST /users/register)",
+            "url": "localhost:3000/api/users/register",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-07-03T01:56:32.100Z",
+            "modified": "2023-07-03T23:25:17.839Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"email\": \"rallred8456@gmail.com\",\n \"password\": \"test\",\n \"firstName\": \"Robert\",\n \"lastName\": \"Allred\",\n \"isAdmin\": \"false\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4646a6c3-92e2-4dd9-ad83-0a742cc748bd",
+            "colId": "da440f55-b4b6-446e-bc6c-a175e1b4702c",
+            "containerId": "",
+            "name": "Login User (POST /users/login)",
+            "url": "localhost:3000/api/users/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-03T01:50:24.315Z",
+            "modified": "2023-07-03T07:14:30.767Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"email\": \"RobertAlsoCodes@me.com\",\n \"password\": \"test\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "57d8b398-c9fc-42c9-a232-9a37fb0eed74",
+            "colId": "da440f55-b4b6-446e-bc6c-a175e1b4702c",
+            "containerId": "",
+            "name": "**Get Logged In User (GET /users/profile)",
+            "url": "localhost:3000/api/users/profile",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-07-03T02:24:30.956Z",
+            "modified": "2023-07-03T02:26:19.413Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzUxMTY3LCJleHAiOjE2ODg5NTU5Njd9.dEjBg6LNg7VH0ufVOJQAevQ2Fa6EpqOQKhESt2YpcPY"
+            },
+            "tests": []
+        },
+        {
+            "_id": "69204306-c008-4120-8692-4b12a074f365",
+            "colId": "da440f55-b4b6-446e-bc6c-a175e1b4702c",
+            "containerId": "",
+            "name": "**Update Users Profile (PATCH /users/profile)",
+            "url": "https://www.thunderclient.com/welcome",
+            "method": "PATCH",
+            "sortNum": 40000,
+            "created": "2023-07-03T02:31:48.848Z",
+            "modified": "2023-07-03T23:20:12.480Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

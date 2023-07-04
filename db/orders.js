@@ -1,19 +1,20 @@
 const client = require("./client");
 
-async function createOrder({ price, hasShipped, isComplete }) {
+async function createOrder({ userId }) {
   try {
     const {
       rows: [order],
     } = await client.query(
       `
-    INSERT INTO orders (price, "hasShipped", "isComplete")
-    VALUES ($1, $2, $3)
+    INSERT INTO orders ("userId")
+    VALUES ($1)
     RETURNING *
     `,
-      [price, hasShipped, isComplete]
+      [userId]
     );
 
     if (order) {
+      order.products = [];
       return order;
     }
   } catch (err) {
@@ -55,6 +56,42 @@ async function getOrderById(id) {
   }
 }
 
+async function getOrdersByUserId(userId) {
+  try {
+    const { rows: orders } = await client.query(
+      `
+    SELECT * 
+    FROM orders 
+    WHERE "userId"=$1 AND "orderStatus" != 'In Cart';
+    `,
+      [userId]
+    );
+
+    return orders;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function getCartByUserId(userId) {
+  try {
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
+    SELECT * 
+    FROM orders 
+    WHERE "userId"=$1 AND "orderStatus" = 'In Cart';
+    `,
+      [userId]
+    );
+
+    return cart;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 async function updateOrder({ id, ...fields }) {
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
@@ -85,4 +122,11 @@ async function updateOrder({ id, ...fields }) {
 
 //get by email when tables joined
 
-module.exports = { createOrder, getAllOrders, getOrderById, updateOrder };
+module.exports = {
+  createOrder,
+  getAllOrders,
+  getOrderById,
+  getOrdersByUserId,
+  getCartByUserId,
+  updateOrder,
+};

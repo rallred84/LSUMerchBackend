@@ -2,7 +2,12 @@ const express = require("express");
 const reviewsRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
-const { createReview, getReviewById, updateReview } = require("../db");
+const {
+  createReview,
+  getReviewById,
+  updateReview,
+  destroyReview,
+} = require("../db");
 const { requireUser } = require("./utils");
 
 // GET /reviews/:productId
@@ -40,10 +45,8 @@ reviewsRouter.patch("/:productId", requireUser, async (req, res, next) => {
 
   try {
     const updatedReview = await updateReview({
-      creatorId: req.user.id,
       productId,
-      message,
-      rating,
+      ...req.body,
     });
 
     if (updatedReview) {
@@ -66,5 +69,30 @@ reviewsRouter.patch("/:productId", requireUser, async (req, res, next) => {
 });
 
 // DELETE /reviews/:productId
+
+reviewsRouter.delete("/:productId", requireUser, async (req, res, next) => {
+  const { productId } = req.params;
+
+  try {
+    const deletedReview = await destroyReview(productId);
+
+    if (deletedReview) {
+      res.send({
+        success: true,
+        data: {
+          message: "Your review has been removed",
+          review: deletedReview,
+        },
+      });
+    } else {
+      next({
+        name: "ReviewError",
+        message: "Review didn't update",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = reviewsRouter;

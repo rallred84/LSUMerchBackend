@@ -71,8 +71,36 @@ async function loginUser({ email, password }) {
   }
 }
 
+async function updateUser({ userId, ...updateFields }) {
+  const setString = Object.keys(updateFields)
+    .map((key, idx) => `"${key}" = $${idx + 1}`)
+    .join(", ");
+
+  console.log(setString);
+  console.log(Object.values(updateFields));
+
+  try {
+    const {
+      rows: [updatedUser],
+    } = await client.query(
+      `
+      UPDATE users
+      SET ${setString}
+      WHERE id = ${userId}
+      RETURNING *;
+    `,
+      Object.values(updateFields)
+    );
+
+    return updatedUser;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   createUser,
   getUserById,
   loginUser,
+  updateUser,
 };

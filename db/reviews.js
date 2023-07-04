@@ -8,6 +8,7 @@ async function createReview({ creatorId, productId, message, rating }) {
       `
     INSERT INTO reviews ("creatorId", "productId", message, rating)
     VALUES ($1, $2, $3, $4)
+    ON CONFLICT ("creatorId", "productId") DO NOTHING
     RETURNING *
     `,
       [creatorId, productId, message, rating]
@@ -36,6 +37,22 @@ async function getAllReviews() {
   }
 }
 
+async function getReviewsByUserId(userId) {
+  try {
+    const { rows: reviews } = await client.query(
+      `
+    SELECT * FROM reviews
+    WHERE "creatorId" = $1
+    `,
+      [userId]
+    );
+
+    return reviews;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 async function getReviewById(id) {
   try {
     const {
@@ -55,7 +72,9 @@ async function getReviewById(id) {
   }
 }
 
-async function updateReview({ id, ...fields }) {
+async function updateReview({ productId, ...fields }) {
+  //Add a check that editer is the same user are the review creator
+
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
@@ -71,7 +90,7 @@ async function updateReview({ id, ...fields }) {
       `
     UPDATE reviews
     SET ${setString}
-    WHERE id=${id}
+    WHERE "productId"=${productId}
     RETURNING *;
   `,
       Object.values(fields)
@@ -83,17 +102,17 @@ async function updateReview({ id, ...fields }) {
   }
 }
 
-async function destroyReview(id) {
+async function destroyReview(productId) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
       DELETE FROM reviews 
-      WHERE id=$1
+      WHERE "productId"=$1
       RETURNING *;
     `,
-      [id]
+      [productId]
     );
 
     return review;
@@ -108,6 +127,7 @@ async function destroyReview(id) {
 module.exports = {
   createReview,
   getAllReviews,
+  getReviewsByUserId,
   getReviewById,
   updateReview,
   destroyReview,

@@ -10,6 +10,8 @@ const {
 
 const client = require("./client");
 
+const { faker } = require("@faker-js/faker");
+
 async function dropTables() {
   console.log("Dropping All Tables");
   await client.query(`
@@ -22,6 +24,22 @@ async function dropTables() {
   DROP TABLE IF EXISTS users;
   `);
 }
+
+// COMMENTING OUT TABLES NOT CURRENTLY BEING USED
+// May Add back in later
+// CREATE TABLE categories (
+//   id SERIAL PRIMARY KEY,
+//   name VARCHAR(255) NOT NULL,
+//   description TEXT NOT NULL
+// );
+
+// CREATE TABLE addresses (
+//   id SERIAL PRIMARY KEY,
+//   street TEXT NOT NULL,
+//   city TEXT NOT NULL,
+//   state TEXT NOT NULL,
+//   zip VARCHAR(10) NOT NULL
+// );
 
 async function createTables() {
   try {
@@ -41,14 +59,8 @@ async function createTables() {
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     price MONEY NOT NULL,
-    quantity INTEGER NOT NULL,
+    "stockQuantity" INTEGER NOT NULL,
     size VARCHAR(255)
-  );
-
-  CREATE TABLE categories (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL
   );
 
   CREATE TYPE status AS ENUM ('In Cart', 'Order Placed', 'Order Complete');
@@ -63,13 +75,6 @@ async function createTables() {
   CREATE UNIQUE INDEX ON orders ("userId")
   WHERE "orderStatus" = 'In Cart';
 
-  CREATE TABLE addresses (
-    id SERIAL PRIMARY KEY,
-    street TEXT NOT NULL,
-    city TEXT NOT NULL,
-    state TEXT NOT NULL,
-    zip VARCHAR(10) NOT NULL
-  );
 
   CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
@@ -129,6 +134,15 @@ async function createInitialUsers() {
       },
     ];
 
+    for (let i = 0; i < 50; i++) {
+      usersToCreate.push({
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        isAdmin: false,
+      });
+    }
     const users = await Promise.all(usersToCreate.map(createUser));
 
     console.log("Users created:");
@@ -150,17 +164,26 @@ async function createInitialProducts() {
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         price: 25,
-        quantity: 4,
+        stockQuantity: 4,
       },
       {
         name: "T-Shirt",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
         price: 30,
-        quantity: 10,
+        stockQuantity: 10,
         size: "XL",
       },
     ];
+
+    for (let i = 0; i < 150; i++) {
+      productsToCreate.push({
+        name: faker.commerce.product(),
+        description: faker.commerce.productDescription(),
+        price: faker.number.int({ min: 5, max: 200 }),
+        stockQuantity: faker.number.int({ min: 5, max: 200 }),
+      });
+    }
 
     const products = await Promise.all(productsToCreate.map(createProduct));
 
@@ -172,50 +195,46 @@ async function createInitialProducts() {
   }
 }
 
-async function createInitialCategories() {
-  console.log("Creating Initial Categories");
+// async function createInitialCategories() {
+//   console.log("Creating Initial Categories");
 
-  try {
-    const categoriesToCreate = [
-      {
-        name: "T-Shirts",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-      },
-      {
-        name: "Hats",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-      },
-    ];
+//   try {
+//     const categoriesToCreate = [
+//       {
+//         name: "T-Shirts",
+//         description:
+//           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+//       },
+//       {
+//         name: "Hats",
+//         description:
+//           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+//       },
+//     ];
 
-    const categories = await Promise.all(
-      categoriesToCreate.map(createCategory)
-    );
+//     const categories = await Promise.all(
+//       categoriesToCreate.map(createCategory)
+//     );
 
-    console.log("Category created!");
-    console.log(categories);
-    console.log("Finished creating categories!");
-  } catch (err) {
-    console.error(err);
-  }
-}
+//     console.log("Category created!");
+//     console.log(categories);
+//     console.log("Finished creating categories!");
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 async function createInitialOrders() {
   console.log("Creating Initial Orders");
 
   try {
-    const ordersToCreate = [
-      {
-        userId: 3,
-      },
-      {
-        userId: 7,
-      },
-      {
-        userId: 4,
-      },
-    ];
+    const ordersToCreate = [];
+
+    for (let i = 0; i < 100; i++) {
+      ordersToCreate.push({
+        userId: faker.number.int({ min: 1, max: 24 }),
+      });
+    }
 
     const orders = await Promise.all(ordersToCreate.map(createOrder));
 
@@ -227,40 +246,40 @@ async function createInitialOrders() {
   }
 }
 
-async function createInitialAddresses() {
-  console.log("Creating Initial Addresses");
+// async function createInitialAddresses() {
+//   console.log("Creating Initial Addresses");
 
-  try {
-    const addressesToCreate = [
-      {
-        street: "2040 Thisway Dr.",
-        city: "Seattle",
-        state: "Oregon",
-        zip: "22432",
-      },
-      {
-        street: "2100 Overhere St.",
-        city: "Orlando",
-        state: "Florida",
-        zip: "5436-32431",
-      },
-      {
-        street: "555 Here Dr.",
-        city: "Chicago",
-        state: "Illinois",
-        zip: "65345",
-      },
-    ];
+//   try {
+//     const addressesToCreate = [
+//       {
+//         street: "2040 Thisway Dr.",
+//         city: "Seattle",
+//         state: "Oregon",
+//         zip: "22432",
+//       },
+//       {
+//         street: "2100 Overhere St.",
+//         city: "Orlando",
+//         state: "Florida",
+//         zip: "5436-32431",
+//       },
+//       {
+//         street: "555 Here Dr.",
+//         city: "Chicago",
+//         state: "Illinois",
+//         zip: "65345",
+//       },
+//     ];
 
-    const addresses = await Promise.all(addressesToCreate.map(createAddress));
+//     const addresses = await Promise.all(addressesToCreate.map(createAddress));
 
-    console.log("Address created!");
-    console.log(addresses);
-    console.log("Finished creating addresses!");
-  } catch (err) {
-    console.error(err);
-  }
-}
+//     console.log("Address created!");
+//     console.log(addresses);
+//     console.log("Finished creating addresses!");
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
 
 async function createInitialReviews() {
   console.log("Creating Initial Reviews");
@@ -283,6 +302,15 @@ async function createInitialReviews() {
       },
     ];
 
+    for (let i = 0; i < 75; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 24 }),
+        productId: faker.number.int({ min: 1, max: 100 }),
+        message: faker.lorem.sentence({ min: 5, max: 40 }),
+        rating: faker.number.int({ min: 1, max: 10 }),
+      });
+    }
+
     const reviews = await Promise.all(reviewsToCreate.map(createReview));
 
     console.log("Review created!");
@@ -298,9 +326,9 @@ async function rebuildDB() {
   await createTables();
   await createInitialUsers();
   await createInitialProducts();
-  await createInitialCategories();
+  // await createInitialCategories();
   await createInitialOrders();
-  await createInitialAddresses();
+  // await createInitialAddresses();
   await createInitialReviews();
   // To rebuild and reseed the database, we will need to :
   // 1) Drop Tables

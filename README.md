@@ -316,7 +316,7 @@ This route is used to grab all products currently listed as inventory items
         "description": "Lorem ipsum dolor",
         //image information
         "price": 10,
-        "quantity": 3,
+        "stockQuantity": 3,
         "size": null
       },
       {
@@ -325,7 +325,7 @@ This route is used to grab all products currently listed as inventory items
         "description": "Lorem ipsum dolor",
         //image information
         "price": 8,
-        "quantity": 2,
+        "stockQuantity": 2,
         "size": null
       }
       //more products
@@ -371,7 +371,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 10,
-      "quantity": 12,
+      "stockQuantity": 12,
       "size": null
     }
   }
@@ -395,7 +395,7 @@ Authorization (template literal,required): Bearer ${token}
 ·description (string, optional): Description of the product being added  
 ·image (**NEED TO FIGURE THIS OUT**)  
 ·price (number, optional): Price of product being added  
-·quantity (number, optional): Amount of product in inventory  
+·stockQuantity (number, optional): Amount of product in inventory  
 ·size (string, optional): Size of product being added, if applies
 
 **Returned Data**  
@@ -415,7 +415,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 11,
-      "quantity": 10,
+      "stockQuantity": 10,
       "size": null
     }
   }
@@ -452,7 +452,7 @@ Authorization (template literal,required): Bearer ${token}
       "description": "Mug celebrating the world series win",
       //Image Info
       "price": 11,
-      "quantity": 10,
+      "stockQuantity": 10,
       "size": null
     }
   }

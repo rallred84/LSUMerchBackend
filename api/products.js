@@ -111,8 +111,6 @@ productsRouter.delete(
     const { productId } = req.params;
 
     try {
-      const product = await getProductById(productId);
-
       const deletedProduct = await destroyProduct(productId);
 
       if (req.user.isAdmin) {
@@ -120,7 +118,7 @@ productsRouter.delete(
           success: true,
           data: {
             message: "Product has been deleted from inventory",
-            deletedProduct,
+            product: deletedProduct,
           },
         });
       } else {

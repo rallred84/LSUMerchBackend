@@ -8,6 +8,7 @@ async function createReview({ creatorId, productId, message, rating }) {
       `
     INSERT INTO reviews ("creatorId", "productId", message, rating)
     VALUES ($1, $2, $3, $4)
+    ON CONFLICT ("creatorId", "productId") DO NOTHING
     RETURNING *
     `,
       [creatorId, productId, message, rating]

@@ -37,6 +37,22 @@ async function getAllReviews() {
   }
 }
 
+async function getReviewsByUserId(userId) {
+  try {
+    const { rows: reviews } = await client.query(
+      `
+    SELECT * FROM reviews
+    WHERE "creatorId" = $1
+    `,
+      [userId]
+    );
+
+    return reviews;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 async function getReviewById(id) {
   try {
     const {
@@ -111,6 +127,7 @@ async function destroyReview(productId) {
 module.exports = {
   createReview,
   getAllReviews,
+  getReviewsByUserId,
   getReviewById,
   updateReview,
   destroyReview,

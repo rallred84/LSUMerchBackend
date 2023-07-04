@@ -2,7 +2,15 @@ const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
-const { createUser, loginUser } = require("../db");
+const {
+  createUser,
+  loginUser,
+  getOrdersByUserId,
+  getCartByUserId,
+  getReviewsByUserId,
+} = require("../db");
+
+const { requireUser, requireAdmin } = require("./utils");
 
 usersRouter.use((req, res, next) => {
   console.log("Making request to /api/users");
@@ -84,6 +92,25 @@ usersRouter.post("/login", async (req, res, next) => {
 });
 
 //GET /users/profile
+
+usersRouter.get("/profile", requireUser, async (req, res, next) => {
+  const user = req.user;
+
+  user.orders = (await getOrdersByUserId(user.id)) || [];
+  user.reviews = (await getReviewsByUserId(user.id)) || [];
+  user.cart = (await getCartByUserId(user.id)) || {};
+
+  try {
+    res.send({
+      success: true,
+      data: {
+        user: user,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 //PATCH /users/profile
 

@@ -62,12 +62,31 @@ async function getOrdersByUserId(userId) {
       `
     SELECT * 
     FROM orders 
-    WHERE "userId"=$1;
+    WHERE "userId"=$1 AND "orderStatus" != 'In Cart';
     `,
       [userId]
     );
 
     return orders;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function getCartByUserId(userId) {
+  try {
+    const {
+      rows: [cart],
+    } = await client.query(
+      `
+    SELECT * 
+    FROM orders 
+    WHERE "userId"=$1 AND "orderStatus" = 'In Cart';
+    `,
+      [userId]
+    );
+
+    return cart;
   } catch (err) {
     console.error(err);
   }
@@ -108,5 +127,6 @@ module.exports = {
   getAllOrders,
   getOrderById,
   getOrdersByUserId,
+  getCartByUserId,
   updateOrder,
 };

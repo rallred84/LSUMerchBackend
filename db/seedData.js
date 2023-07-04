@@ -137,7 +137,7 @@ async function createInitialUsers() {
     for (let i = 0; i < 50; i++) {
       usersToCreate.push({
         email: faker.internet.email(),
-        password: faker.internet.password(),
+        password: "test",
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
         isAdmin: false,

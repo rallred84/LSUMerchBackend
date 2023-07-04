@@ -96,6 +96,8 @@ This route is used to grab an already logged in user's relevant data. It is most
 ·Content-Type (string, required): application/json  
 ·Authorization (template literal, required): Bearer ${token}
 
+**No Body Required**
+
 **Returned Data**  
 ·user (object): Logged In User  
 Includes additional keys "reviews" and "cart":  

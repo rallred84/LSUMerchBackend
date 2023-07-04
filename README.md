@@ -150,12 +150,11 @@ Content-Type (string, required): application/json
 Authorization (template literal, required): Bearer ${token}
 
 **Body:**  
-**(object, required) contains the following key/value pairs:**
+**(object, required) contains the following key/value pairs:**  
 ·email (string, optional): the desired email for the updated user  
 ·password (string, optional): the desired password for the updated user  
 ·firstName (string, optional): the first name of the updated user  
-·lastName (string, optional): the last name of the updated user  
-·isAdmin (boolean, optional): is the updated user an admin?
+·lastName (string, optional): the last name of the updated user
 
 **Returned Data**  
 ·message (string): Your account has been updated ${firstName}!  

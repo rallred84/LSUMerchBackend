@@ -8,6 +8,7 @@ const {
   getOrdersByUserId,
   getCartByUserId,
   getReviewsByUserId,
+  updateUser,
 } = require("../db");
 
 const { requireUser, requireAdmin } = require("./utils");
@@ -113,5 +114,23 @@ usersRouter.get("/profile", requireUser, async (req, res, next) => {
 });
 
 //PATCH /users/profile
+
+usersRouter.patch("/profile", requireUser, async (req, res, next) => {
+  const displayName = req.body.firstName
+    ? req.body.firstName
+    : req.user.firstName;
+  try {
+    const updatedUser = await updateUser({ userId: req.user.id, ...req.body });
+    res.send({
+      success: true,
+      data: {
+        message: `Your account has been updated ${displayName}!`,
+        user: updatedUser,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = usersRouter;

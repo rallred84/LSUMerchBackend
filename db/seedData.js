@@ -15,6 +15,7 @@ const { faker } = require("@faker-js/faker");
 async function dropTables() {
   console.log("Dropping All Tables");
   await client.query(`
+  DROP TABLE IF EXISTS orders_products;
   DROP TABLE IF EXISTS reviews;
   DROP TABLE IF EXISTS addresses;
   DROP TABLE IF EXISTS orders;
@@ -85,6 +86,14 @@ async function createTables() {
     date DATE DEFAULT CURRENT_DATE NOT NULL,
     UNIQUE ("creatorId", "productId")
   );
+
+    CREATE TABLE orders_products (
+      id SERIAL PRIMARY KEY,
+      "orderId" INTEGER REFERENCES orders (id),
+      "productId" INTEGER REFERENCES products (id),
+      UNIQUE ("orderId", "productId")
+    ); 
+
   `);
     console.log("Tables built");
   } catch (error) {

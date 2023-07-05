@@ -10,6 +10,11 @@ const {
 } = require("../db");
 const { requireUser } = require("./utils");
 
+reviewsRouter.use((req, res, next) => {
+  console.log("Making request to /api/reviews");
+  next();
+});
+
 // GET /reviews/:productId
 //join prodId to products to get reviews for product
 

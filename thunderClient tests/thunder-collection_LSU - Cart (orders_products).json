@@ -1,0 +1,78 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU - Cart (orders_products)",
+    "dateExported": "2023-07-05T03:59:12.523Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5947471c-858c-4f05-8e4c-33e1873d0f2b",
+            "colId": "c0b0d420-88fc-46e7-a457-bece8d5d05af",
+            "containerId": "",
+            "name": "Add Product to Cart (POST /orders_products)",
+            "url": "localhost:3000/api/orders_products",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-05T03:12:23.517Z",
+            "modified": "2023-07-05T03:26:18.149Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderId\": 4,\n  \"productId\": 8,\n  \"quantity\": 3\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJEZWFuZ2Vsb19CYXVjaEB5YWhvby5jb20iLCJpYXQiOjE2ODg1MTQyMjIsImV4cCI6MTY4OTExOTAyMn0.biEWNfA-JkHfJR84uI2aemx1jE1HABivC1vcyKguKfc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "63ee05da-211e-46cb-94c1-fe5790624d1a",
+            "colId": "c0b0d420-88fc-46e7-a457-bece8d5d05af",
+            "containerId": "",
+            "name": "Remove Product from Cart (DELETE /orders_products)",
+            "url": "localhost:3000/api/orders_products",
+            "method": "DELETE",
+            "sortNum": 20000,
+            "created": "2023-07-05T03:12:57.115Z",
+            "modified": "2023-07-05T03:19:11.561Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderId\": 4,\n  \"productId\": 8\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJEZWFuZ2Vsb19CYXVjaEB5YWhvby5jb20iLCJpYXQiOjE2ODg1MTQyMjIsImV4cCI6MTY4OTExOTAyMn0.biEWNfA-JkHfJR84uI2aemx1jE1HABivC1vcyKguKfc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "dd312662-77b7-4020-95ea-b32a6d14f3da",
+            "colId": "c0b0d420-88fc-46e7-a457-bece8d5d05af",
+            "containerId": "",
+            "name": "Update Product Quantity in Cart (PATCH /orders_products)",
+            "url": "localhost:3000/api/orders_products",
+            "method": "PATCH",
+            "sortNum": 30000,
+            "created": "2023-07-05T03:42:50.792Z",
+            "modified": "2023-07-05T03:44:54.625Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderId\": 4,\n  \"productId\": 8,\n  \"quantity\": 10\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJEZWFuZ2Vsb19CYXVjaEB5YWhvby5jb20iLCJpYXQiOjE2ODg1MTQyMjIsImV4cCI6MTY4OTExOTAyMn0.biEWNfA-JkHfJR84uI2aemx1jE1HABivC1vcyKguKfc"
+            },
+            "tests": []
+        }
+    ]
+}

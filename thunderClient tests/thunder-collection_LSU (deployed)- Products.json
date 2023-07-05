@@ -1,0 +1,87 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU (deployed)- Products",
+    "dateExported": "2023-07-05T04:33:32.758Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e8d32e00-5589-4ff7-8705-756587394c29",
+            "colId": "a74bcca1-397f-4830-ab24-b79f2958984e",
+            "containerId": "",
+            "name": "Get All Products (GET /products)",
+            "url": "https://tigers-den.onrender.com/api/products",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-05T04:19:23.733Z",
+            "modified": "2023-07-05T04:22:22.437Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0cea5679-0a41-4242-a375-ad725d7d90ca",
+            "colId": "a74bcca1-397f-4830-ab24-b79f2958984e",
+            "containerId": "",
+            "name": "Create New Product (POST /products)",
+            "url": "https://tigers-den.onrender.com/api/products",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-05T04:19:23.734Z",
+            "modified": "2023-07-05T04:29:09.328Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"WS Hat 2023\",\n  \"description\": \"Hat celebrating 2023 World Series Win\",\n  \"price\": 12,\n  \"stockQuantity\": 4\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsImVtYWlsIjoiUm9iZXJ0QWxzb0NvZGVzQG1lLmNvbSIsImlhdCI6MTY4ODUzMTIyOSwiZXhwIjoxNjg5MTM2MDI5fQ.Z5Pd5QSVLoLYZJekrFpoxerA-vnVy3A0RC4R1STkE9I"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fc1bba73-52ac-4072-830f-0930c1a36b48",
+            "colId": "a74bcca1-397f-4830-ab24-b79f2958984e",
+            "containerId": "",
+            "name": "Edit Product (PATCH /products/productId)",
+            "url": "https://tigers-den.onrender.com/api/products/156",
+            "method": "PATCH",
+            "sortNum": 30000,
+            "created": "2023-07-05T04:19:23.735Z",
+            "modified": "2023-07-05T04:30:04.327Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"size\" : \"One Size Fits All\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsImVtYWlsIjoiUm9iZXJ0QWxzb0NvZGVzQG1lLmNvbSIsImlhdCI6MTY4ODUzMTIyOSwiZXhwIjoxNjg5MTM2MDI5fQ.Z5Pd5QSVLoLYZJekrFpoxerA-vnVy3A0RC4R1STkE9I"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e63aa325-7d80-498e-937d-40ebf308a159",
+            "colId": "a74bcca1-397f-4830-ab24-b79f2958984e",
+            "containerId": "",
+            "name": "Delete Product (PATCH /products/:productId)",
+            "url": "https://tigers-den.onrender.com/api/products/152",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-07-05T04:19:23.736Z",
+            "modified": "2023-07-05T04:30:20.838Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzY3ODE0LCJleHAiOjE2ODg5NzI2MTR9.RRhC5Azpibp32Hb1HR21yPUuRDdpHfAX-vQejZjwySw"
+            },
+            "tests": []
+        }
+    ]
+}

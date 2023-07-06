@@ -1,5 +1,7 @@
 const client = require("./client");
 
+const { addProductsToOrder } = require("./utils");
+
 async function createOrder({ userId }) {
   try {
     const {
@@ -62,10 +64,12 @@ async function getOrdersByUserId(userId) {
       `
     SELECT * 
     FROM orders 
-    WHERE "userId"=$1 AND "orderStatus" != 'In Cart';
+    WHERE "userId"=$1 ;
     `,
       [userId]
     );
+
+    orders.map((order) => addProductsToOrder({ order }));
 
     return orders;
   } catch (err) {
@@ -75,16 +79,9 @@ async function getOrdersByUserId(userId) {
 
 async function getCartByUserId(userId) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
-      `
-    SELECT * 
-    FROM orders 
-    WHERE "userId"=$1 AND "orderStatus" = 'In Cart';
-    `,
-      [userId]
-    );
+    const orders = await getOrdersByUserId(userId);
+
+    const cart = orders.find((order) => order.orderStatus === "In Cart");
 
     return cart;
   } catch (err) {

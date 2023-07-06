@@ -25,7 +25,7 @@ usersRouter.use((req, res, next) => {
 usersRouter.post("/register", async (req, res, next) => {
   try {
     const user = await createUser(req.body);
-    console.log(user);
+
     if (user) {
       const token = jwt.sign(
         {
@@ -62,7 +62,7 @@ usersRouter.post("/register", async (req, res, next) => {
 usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await loginUser(req.body);
-    console.log(user);
+
     if (user) {
       const token = jwt.sign(
         {
@@ -100,6 +100,16 @@ usersRouter.get("/profile", requireUser, async (req, res, next) => {
   user.orders = (await getOrdersByUserId(user.id)) || [];
   user.reviews = (await getReviewsByUserId(user.id)) || [];
   user.cart = (await getCartByUserId(user.id)) || {};
+
+  //Ask Max how to make sure all the above await functions run before running the following block of code
+  for (let order of user.orders) {
+    let totalPrice = 0;
+    for (let product of order.products) {
+      totalPrice =
+        totalPrice + Number(product.price.slice(1)) * Number(product.quantity);
+    }
+    order.price = totalPrice;
+  }
 
   try {
     res.send({

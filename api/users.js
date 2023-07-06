@@ -96,7 +96,10 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.get("/profile", requireUser, async (req, res, next) => {
   const user = req.user;
-
+  
+// Doing the following might fix async issues I was having last night
+// const orders= await...
+// user.order= orers 
   user.orders = (await getOrdersByUserId(user.id)) || [];
   user.reviews = (await getReviewsByUserId(user.id)) || [];
   user.cart = (await getCartByUserId(user.id)) || {};

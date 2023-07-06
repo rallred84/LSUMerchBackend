@@ -8,4 +8,5 @@ module.exports = {
   ...require("./orders"), // adds key/values from orders.js
   ...require("./addresses"), // adds key/values from addresses.js
   ...require("./reviews"), // adds key/values from reviews.js
+  ...require("./orderProducts"), // adds key/values from orderProducts.js
 };

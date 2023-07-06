@@ -1,0 +1,59 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LSU (deployed)- Orders",
+    "dateExported": "2023-07-05T04:33:49.459Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "82d4b0e5-e031-4cd4-9cf9-53f0cace8901",
+            "colId": "d2116c71-6917-4520-91c8-2ac795d2a53c",
+            "containerId": "",
+            "name": "Get All Orders (GET /orders)",
+            "url": "https://tigers-den.onrender.com/api/orders",
+            "method": "GET",
+            "sortNum": 5000,
+            "created": "2023-07-05T04:19:23.733Z",
+            "modified": "2023-07-05T04:23:18.541Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "70d3aef0-eade-4526-986f-0e05c43cd9b3",
+            "colId": "d2116c71-6917-4520-91c8-2ac795d2a53c",
+            "containerId": "",
+            "name": "Get All User's Orders (GET /orders/:userId)",
+            "url": "https://tigers-den.onrender.com/api/orders/4",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-05T04:19:23.731Z",
+            "modified": "2023-07-05T04:31:30.264Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsImVtYWlsIjoiUm9iZXJ0QWxzb0NvZGVzQG1lLmNvbSIsImlhdCI6MTY4ODUzMTIyOSwiZXhwIjoxNjg5MTM2MDI5fQ.Z5Pd5QSVLoLYZJekrFpoxerA-vnVy3A0RC4R1STkE9I"
+            },
+            "tests": []
+        },
+        {
+            "_id": "23e136cb-7b24-44eb-a71f-1f05e5c642c3",
+            "colId": "d2116c71-6917-4520-91c8-2ac795d2a53c",
+            "containerId": "",
+            "name": "Create New Order/Cart (POST /orders)",
+            "url": "https://tigers-den.onrender.com/api/orders",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-05T04:19:23.732Z",
+            "modified": "2023-07-05T04:32:16.360Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsImVtYWlsIjoiUm9iZXJ0QWxzb0NvZGVzQG1lLmNvbSIsImlhdCI6MTY4ODUzMTIyOSwiZXhwIjoxNjg5MTM2MDI5fQ.Z5Pd5QSVLoLYZJekrFpoxerA-vnVy3A0RC4R1STkE9I"
+            },
+            "tests": []
+        }
+    ]
+}

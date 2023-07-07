@@ -13,7 +13,7 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 [USERS](#users-endpoints)  
 [PRODUCTS](#products-endpoints)  
 [REVIEWS](#reviews-endpoints)  
-[ORDERS](#orders-endpoints)
+[ORDERS](#orders-endpoints)  
 [ORDERS_PRODUCTS](#orders-products-endpoints)
 
 ## <a name ="users-endpoints"></a>USERS ENDPOINTS

@@ -752,7 +752,7 @@ cart (object): Updated cart
 
 **END USERS ROUTE**
 
-This route will be used to add products to an existing cart(order)
+This route will be used to edit quantity of products in an existing cart(order)
 
 **Headers:**  
 **(object literal, required)**  
@@ -787,7 +787,7 @@ cart (object): Updated cart
 
 **END USERS ROUTE**
 
-This route will be used to add products to an existing cart(order)
+This route will be used to remove products entitely from an existing cart(order)
 
 **Headers:**  
 **(object literal, required)**  

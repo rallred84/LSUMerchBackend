@@ -14,6 +14,7 @@ This is part of the Capstone project for Fullstack Academy's 26 week part time w
 [PRODUCTS](#products-endpoints)  
 [REVIEWS](#reviews-endpoints)  
 [ORDERS](#orders-endpoints)
+[ORDERS_PRODUCTS](#orders-products-endpoints)
 
 ## <a name ="users-endpoints"></a>USERS ENDPOINTS
 
@@ -707,6 +708,10 @@ Authorization (template literal,required): Bearer ${token}
   }
 }
 ```
+
+## <a name ="orders-products-endpoints"></a>ORDERS_PRODUCTS ENDPOINTS
+
+[Go back to top of page](#api-docs)
 
 ### POST /orders_products
 

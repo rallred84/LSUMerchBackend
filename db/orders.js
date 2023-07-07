@@ -1,5 +1,7 @@
 const client = require("./client");
 
+const { addProductsToOrder } = require("./utils");
+
 async function createOrder({ userId }) {
   try {
     const {
@@ -56,16 +58,27 @@ async function getOrderById(id) {
   }
 }
 
-async function getOrdersByUserId(userId) {
+async function getOrdersByUserId(user) {
   try {
     const { rows: orders } = await client.query(
       `
     SELECT * 
     FROM orders 
-    WHERE "userId"=$1 AND "orderStatus" != 'In Cart';
+    WHERE "userId"=$1 ;
     `,
-      [userId]
+      [user.id]
     );
+
+    for (let order of orders) {
+      await addProductsToOrder({ order });
+      let totalPrice = 0;
+      for (let product of order.products) {
+        totalPrice =
+          totalPrice +
+          Number(product.price.slice(1)) * Number(product.quantity);
+      }
+      order.totalPrice = totalPrice;
+    }
 
     return orders;
   } catch (err) {
@@ -73,18 +86,11 @@ async function getOrdersByUserId(userId) {
   }
 }
 
-async function getCartByUserId(userId) {
+async function getCartByUserId(user) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
-      `
-    SELECT * 
-    FROM orders 
-    WHERE "userId"=$1 AND "orderStatus" = 'In Cart';
-    `,
-      [userId]
-    );
+    const orders = await getOrdersByUserId(user);
+
+    const cart = orders.find((order) => order.orderStatus === "In Cart");
 
     return cart;
   } catch (err) {

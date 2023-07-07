@@ -25,7 +25,7 @@ usersRouter.use((req, res, next) => {
 usersRouter.post("/register", async (req, res, next) => {
   try {
     const user = await createUser(req.body);
-    console.log(user);
+
     if (user) {
       const token = jwt.sign(
         {
@@ -62,7 +62,7 @@ usersRouter.post("/register", async (req, res, next) => {
 usersRouter.post("/login", async (req, res, next) => {
   try {
     const user = await loginUser(req.body);
-    console.log(user);
+
     if (user) {
       const token = jwt.sign(
         {
@@ -95,13 +95,11 @@ usersRouter.post("/login", async (req, res, next) => {
 //GET /users/profile
 
 usersRouter.get("/profile", requireUser, async (req, res, next) => {
-  const user = req.user;
-
-  user.orders = (await getOrdersByUserId(user.id)) || [];
-  user.reviews = (await getReviewsByUserId(user.id)) || [];
-  user.cart = (await getCartByUserId(user.id)) || {};
-
   try {
+    const user = req.user;
+    user.orders = (await getOrdersByUserId(user)) || [];
+    user.reviews = (await getReviewsByUserId(user.id)) || [];
+    user.cart = (await getCartByUserId(user)) || {};
     res.send({
       success: true,
       data: {

@@ -21,7 +21,6 @@ productsRouter.use((req, res, next) => {
 productsRouter.get("/", async (req, res, next) => {
   try {
     const products = await getAllProducts();
-    console.log(products);
 
     if (products) {
       res.send({
@@ -46,7 +45,7 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
   try {
     const product = await createProduct(req.body);
-    console.log(product);
+
     if (req.user.isAdmin) {
       res.send({
         success: true,

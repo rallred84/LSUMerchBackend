@@ -74,6 +74,4 @@ ordersRouter.post("/", requireUser, async (req, res, next) => {
   }
 });
 
-// PATCH /orders/:orderId
-
 module.exports = ordersRouter;

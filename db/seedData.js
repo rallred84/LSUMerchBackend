@@ -69,7 +69,7 @@ async function createTables() {
   CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     "userId" INTEGER NOT NULL,
-    price MONEY,
+    "totalPrice" MONEY,
     "orderStatus" status default 'In Cart' NOT NULL
   );
 

@@ -39,7 +39,6 @@ async function getUserById(userId) {
 
     if (user) {
       delete user.password;
-      console.log(user);
       return user;
     }
   } catch (err) {
@@ -63,7 +62,6 @@ async function loginUser({ email, password }) {
 
     if (passwordsMatch) {
       delete user.password;
-      console.log(user);
       return user;
     }
   } catch (err) {
@@ -75,9 +73,6 @@ async function updateUser({ userId, ...updateFields }) {
   const setString = Object.keys(updateFields)
     .map((key, idx) => `"${key}" = $${idx + 1}`)
     .join(", ");
-
-  console.log(setString);
-  console.log(Object.values(updateFields));
 
   try {
     const {

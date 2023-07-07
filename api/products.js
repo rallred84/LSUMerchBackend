@@ -42,7 +42,7 @@ productsRouter.get("/", async (req, res, next) => {
 
 // POST /products
 
-productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
+productsRouter.post("/", requireUser, requireAdmin, async (req, res, next) => {
   try {
     const product = await createProduct(req.body);
 
@@ -50,7 +50,7 @@ productsRouter.post("/", requireAdmin, requireUser, async (req, res, next) => {
       res.send({
         success: true,
         data: {
-          message: "Product added to inventory",
+          message: `${product.name} added to inventory`,
           product,
         },
       });
@@ -84,7 +84,7 @@ productsRouter.patch(
         res.send({
           success: true,
           data: {
-            message: "Product has been updated",
+            message: `${updatedProduct.name} has been updated`,
             product: updatedProduct,
           },
         });
@@ -116,7 +116,7 @@ productsRouter.delete(
         res.send({
           success: true,
           data: {
-            message: "Product has been deleted from inventory",
+            message: `${deletedProduct.name} has been deleted from inventory`,
             product: deletedProduct,
           },
         });

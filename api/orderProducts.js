@@ -17,6 +17,9 @@ orderProductsRouter.use((req, res, next) => {
 orderProductsRouter.post("/", requireUser, async (req, res, next) => {
   try {
     const newCartProduct = await addProductToCart(req.body);
+
+    //Need to Update Order's Total Price when products are added and removed from the cart
+
     res.send({
       success: true,
       data: {
@@ -34,6 +37,9 @@ orderProductsRouter.post("/", requireUser, async (req, res, next) => {
 orderProductsRouter.delete("/", requireUser, async (req, res, next) => {
   try {
     const deletedCartProduct = await deleteProductFromCart(req.body);
+
+    //Need to Update Order's Total Price when products are added and removed from the cart
+
     res.send({
       success: true,
       data: {
@@ -51,6 +57,9 @@ orderProductsRouter.delete("/", requireUser, async (req, res, next) => {
 orderProductsRouter.patch("/", requireUser, async (req, res, next) => {
   try {
     const updatedCartProduct = await changeProductCartQuantity(req.body);
+
+    //Need to Update Order's Total Price when products are added and removed from the cart
+
     res.send({
       success: true,
       data: {

@@ -76,7 +76,7 @@ usersRouter.post("/login", async (req, res, next) => {
       res.send({
         success: true,
         data: {
-          message: "You are logged in!",
+          message: `You are logged in ${user.firstName}!`,
           token,
           user,
         },
@@ -119,6 +119,7 @@ usersRouter.patch("/profile", requireUser, async (req, res, next) => {
     : req.user.firstName;
   try {
     const updatedUser = await updateUser({ userId: req.user.id, ...req.body });
+    delete updatedUser.password;
     res.send({
       success: true,
       data: {

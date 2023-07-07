@@ -1,7 +1,13 @@
 const express = require("express");
 const ordersRouter = express.Router();
 const { requireUser, requireAdmin } = require("./utils");
-const { getAllOrders, getOrdersByUserId, createOrder } = require("../db");
+const {
+  getAllOrders,
+  getOrdersByUserId,
+  createOrder,
+  updateOrder,
+  getUserById,
+} = require("../db");
 
 ordersRouter.use((req, res, next) => {
   console.log("Making request to /api/orders");
@@ -32,8 +38,9 @@ ordersRouter.get(
   requireAdmin,
   async (req, res, next) => {
     const { userId } = req.params;
+    const user = await getUserById(userId);
     try {
-      const usersOrders = await getOrdersByUserId(userId);
+      const usersOrders = await getOrdersByUserId(user);
       res.send({
         success: true,
         data: {
@@ -73,5 +80,43 @@ ordersRouter.post("/", requireUser, async (req, res, next) => {
     console.error(err);
   }
 });
+
+// PATCH /orders/:orderId/place
+
+ordersRouter.patch("/:orderId/place", async (req, res, next) => {
+  const { orderId } = req.params;
+  const placedOrder = await updateOrder({
+    id: orderId,
+    orderStatus: "Order Placed",
+  });
+
+  res.send({
+    success: true,
+    data: {
+      message: "Order has been placed",
+      order: placedOrder,
+    },
+  });
+});
+
+// PATCH /orders/:orderId/complete
+
+ordersRouter.patch("/:orderId/complete", async (req, res, next) => {
+  const { orderId } = req.params;
+  const completedOrder = await updateOrder({
+    id: orderId,
+    orderStatus: "Order Complete",
+  });
+
+  res.send({
+    success: true,
+    data: {
+      message: "Order has been shipped/completed",
+      order: completedOrder,
+    },
+  });
+});
+
+ordersRouter;
 
 module.exports = ordersRouter;

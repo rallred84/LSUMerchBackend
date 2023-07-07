@@ -121,7 +121,7 @@ async function updateOrder({ id, ...fields }) {
     );
 
     return order;
-  } catch (error) {
+  } catch (err) {
     console.error(err);
   }
 }

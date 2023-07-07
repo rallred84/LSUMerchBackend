@@ -91,7 +91,9 @@ async function updateProduct({ id, ...fields }) {
 
 async function destroyProduct(id) {
   try {
-    const { rows: products } = await client.query(
+    const {
+      rows: [product],
+    } = await client.query(
       `
       DELETE FROM products 
       WHERE id=$1
@@ -100,7 +102,7 @@ async function destroyProduct(id) {
       [id]
     );
 
-    return products;
+    return product;
   } catch (error) {
     console.error(err);
   }

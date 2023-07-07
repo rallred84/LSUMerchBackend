@@ -95,26 +95,11 @@ usersRouter.post("/login", async (req, res, next) => {
 //GET /users/profile
 
 usersRouter.get("/profile", requireUser, async (req, res, next) => {
-  const user = req.user;
-  
-// Doing the following might fix async issues I was having last night
-// const orders= await...
-// user.order= orers 
-  user.orders = (await getOrdersByUserId(user.id)) || [];
-  user.reviews = (await getReviewsByUserId(user.id)) || [];
-  user.cart = (await getCartByUserId(user.id)) || {};
-
-  //Ask Max how to make sure all the above await functions run before running the following block of code
-  for (let order of user.orders) {
-    let totalPrice = 0;
-    for (let product of order.products) {
-      totalPrice =
-        totalPrice + Number(product.price.slice(1)) * Number(product.quantity);
-    }
-    order.price = totalPrice;
-  }
-
   try {
+    const user = req.user;
+    user.orders = (await getOrdersByUserId(user)) || [];
+    user.reviews = (await getReviewsByUserId(user.id)) || [];
+    user.cart = (await getCartByUserId(user)) || {};
     res.send({
       success: true,
       data: {

@@ -58,7 +58,7 @@ async function getOrderById(id) {
   }
 }
 
-async function getOrdersByUserId(userId) {
+async function getOrdersByUserId(user) {
   try {
     const { rows: orders } = await client.query(
       `
@@ -66,10 +66,19 @@ async function getOrdersByUserId(userId) {
     FROM orders 
     WHERE "userId"=$1 ;
     `,
-      [userId]
+      [user.id]
     );
 
-    orders.map((order) => addProductsToOrder({ order }));
+    for (let order of orders) {
+      await addProductsToOrder({ order });
+      let totalPrice = 0;
+      for (let product of order.products) {
+        totalPrice =
+          totalPrice +
+          Number(product.price.slice(1)) * Number(product.quantity);
+      }
+      order.totalPrice = totalPrice;
+    }
 
     return orders;
   } catch (err) {
@@ -77,9 +86,9 @@ async function getOrdersByUserId(userId) {
   }
 }
 
-async function getCartByUserId(userId) {
+async function getCartByUserId(user) {
   try {
-    const orders = await getOrdersByUserId(userId);
+    const orders = await getOrdersByUserId(user);
 
     const cart = orders.find((order) => order.orderStatus === "In Cart");
 

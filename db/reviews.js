@@ -41,7 +41,8 @@ async function getReviewsByUserId(userId) {
   try {
     const { rows: reviews } = await client.query(
       `
-    SELECT * FROM reviews
+    SELECT r.id, "productId", p.name AS "productName", message, rating, date FROM reviews r
+    JOIN products p ON "productId" = p.id
     WHERE "creatorId" = $1
     `,
       [userId]

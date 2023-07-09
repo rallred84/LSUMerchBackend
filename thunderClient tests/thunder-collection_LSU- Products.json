@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "LSU- Products",
-    "dateExported": "2023-07-05T03:58:43.888Z",
+    "dateExported": "2023-07-09T01:26:03.692Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -28,17 +28,17 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-03T23:27:22.909Z",
-            "modified": "2023-07-03T23:27:22.909Z",
+            "modified": "2023-07-08T23:46:46.199Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"WS Hat 2023\",\n  \"description\": \"Hat celebrating 2023 World Series Win\",\n  \"price\": 12,\n  \"quantity\": 4\n}",
+                "raw": "{\n  \"name\": \"WS Hat 2023\",\n  \"description\": \"Hat celebrating 2023 World Series Win\",\n  \"price\": 12,\n  \"stockQuantity\": 4\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzY4NDcwLCJleHAiOjE2ODg5NzMyNzB9.i-bUbyoyelnuWGSatjv_JuH_r4Ja7BkKTmIql03aG78"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -47,21 +47,21 @@
             "colId": "a8f3d27d-f7ae-47fa-90f3-869bc97d240c",
             "containerId": "",
             "name": "Edit Product (PATCH /products/productId)",
-            "url": "localhost:3000/api/products/3",
+            "url": "localhost:3000/api/products/154",
             "method": "PATCH",
             "sortNum": 30000,
             "created": "2023-07-03T23:27:22.910Z",
-            "modified": "2023-07-03T23:27:22.910Z",
+            "modified": "2023-07-08T23:47:48.559Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"description\": \"Purple hat with gold trim\"\n}",
+                "raw": "{\n  \"name\": \"World Series Hat 2023\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzY3ODE0LCJleHAiOjE2ODg5NzI2MTR9.RRhC5Azpibp32Hb1HR21yPUuRDdpHfAX-vQejZjwySw"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -70,16 +70,16 @@
             "colId": "a8f3d27d-f7ae-47fa-90f3-869bc97d240c",
             "containerId": "",
             "name": "Delete Product (PATCH /products/:productId)",
-            "url": "localhost:3000/api/products/3",
+            "url": "localhost:3000/api/products/154",
             "method": "DELETE",
             "sortNum": 40000,
             "created": "2023-07-03T23:27:22.911Z",
-            "modified": "2023-07-03T23:27:22.911Z",
+            "modified": "2023-07-08T23:48:05.034Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4MzY3ODE0LCJleHAiOjE2ODg5NzI2MTR9.RRhC5Azpibp32Hb1HR21yPUuRDdpHfAX-vQejZjwySw"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         }

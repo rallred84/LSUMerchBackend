@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "LSU- Orders",
-    "dateExported": "2023-07-05T03:59:04.240Z",
+    "dateExported": "2023-07-09T01:26:23.593Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -24,16 +24,16 @@
             "colId": "71d56cce-d63e-4641-a7d5-e341d48aa781",
             "containerId": "",
             "name": "Get All User's Orders (GET /orders/:userId)",
-            "url": "localhost:3000/api/orders/3",
+            "url": "localhost:3000/api/orders/1",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-07-03T23:27:22.906Z",
-            "modified": "2023-07-03T23:27:22.906Z",
+            "modified": "2023-07-08T23:53:04.479Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4NDI1ODMyLCJleHAiOjE2ODkwMzA2MzJ9.IcpHIopEhSzchCPynpT_dlEGjbkB46_59zx_oMtl4Z8"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -46,12 +46,48 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-03T23:27:22.907Z",
-            "modified": "2023-07-04T18:31:43.887Z",
+            "modified": "2023-07-08T23:53:46.107Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoiU3RlcGhhbnkxNUBob3RtYWlsLmNvbSIsImlhdCI6MTY4ODQ5NDI0MiwiZXhwIjoxNjg5MDk5MDQyfQ.pDuHaL66_ecRDDY-oU_c9rZxTDfj_NoHR7bXan8MSfQ"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e9e80e98-1d08-40a6-b580-84d31d45c7cb",
+            "colId": "71d56cce-d63e-4641-a7d5-e341d48aa781",
+            "containerId": "",
+            "name": "Place Order - Convert Cart to Order (PATCH /orders/:orderid/place)",
+            "url": "localhost:3000/api/orders/place",
+            "method": "PATCH",
+            "sortNum": 30000,
+            "created": "2023-07-07T03:33:35.716Z",
+            "modified": "2023-07-09T00:20:41.342Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
+            },
+            "tests": []
+        },
+        {
+            "_id": "479110fe-b184-4c4a-95d3-b6e971cd1543",
+            "colId": "71d56cce-d63e-4641-a7d5-e341d48aa781",
+            "containerId": "",
+            "name": "Complete Order - Order Shipped to User (PATCH /orders/:orderid/complete)",
+            "url": "localhost:3000/api/orders/105/complete",
+            "method": "PATCH",
+            "sortNum": 40000,
+            "created": "2023-07-07T05:37:24.293Z",
+            "modified": "2023-07-09T00:40:57.023Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QG1lLmNvbSIsImlhdCI6MTY4ODg0MzUwMCwiZXhwIjoxNjg5NDQ4MzAwfQ.YYPSuldSoQB-9Rldruz6xpNxeRbIEMbI9j190MohNbA"
             },
             "tests": []
         }

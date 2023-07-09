@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "LSU- Reviews",
-    "dateExported": "2023-07-05T03:58:54.141Z",
+    "dateExported": "2023-07-09T01:26:13.614Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -10,21 +10,21 @@
             "colId": "5a48571f-137f-4419-ab56-824fa221124b",
             "containerId": "",
             "name": "Create Review (POST /reviews/:productId)",
-            "url": "localhost:3000/api/reviews/2",
+            "url": "localhost:3000/api/reviews/50",
             "method": "POST",
             "sortNum": 5000,
             "created": "2023-07-03T23:27:22.911Z",
-            "modified": "2023-07-03T23:27:22.911Z",
+            "modified": "2023-07-08T23:51:24.239Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"message\": \"This is great!\",\n  \"rating\": 10\n}",
+                "raw": "{\n  \"message\": \"This is awful!\",\n  \"rating\": 4\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4NDI2NTQ2LCJleHAiOjE2ODkwMzEzNDZ9.-FbFxKTMa0_mFZ3242ae-5tufLkpyfdpL3_y86DiKF8"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -33,21 +33,21 @@
             "colId": "5a48571f-137f-4419-ab56-824fa221124b",
             "containerId": "",
             "name": "Edit Review (PATCH /reviews/:productId)",
-            "url": "localhost:3000/api/reviews/2",
+            "url": "localhost:3000/api/reviews/5",
             "method": "PATCH",
             "sortNum": 10000,
             "created": "2023-07-03T23:27:22.910Z",
-            "modified": "2023-07-03T23:27:22.910Z",
+            "modified": "2023-07-08T23:50:47.596Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"message\": \"This is bad!\",\n  \"rating\": 3\n}",
+                "raw": "{\n  \"message\": \"This is good!\",\n  \"rating\": 10\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4NDI1MTgwLCJleHAiOjE2ODkwMjk5ODB9.-zEGhZpPR5cNazEpbPZu4nfzB_KpjSqe6JCF9DCZKRU"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -56,16 +56,16 @@
             "colId": "5a48571f-137f-4419-ab56-824fa221124b",
             "containerId": "",
             "name": "Delete Review (DELETE /reviews/:productId)",
-            "url": "localhost:3000/api/reviews/2",
+            "url": "localhost:3000/api/reviews/50",
             "method": "DELETE",
             "sortNum": 20000,
             "created": "2023-07-03T23:27:22.912Z",
-            "modified": "2023-07-03T23:27:22.912Z",
+            "modified": "2023-07-08T23:51:46.765Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJSb2JlcnRBbHNvQ29kZXNAbWUuY29tIiwiaWF0IjoxNjg4NDI1MTgwLCJleHAiOjE2ODkwMjk5ODB9.-zEGhZpPR5cNazEpbPZu4nfzB_KpjSqe6JCF9DCZKRU"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         }

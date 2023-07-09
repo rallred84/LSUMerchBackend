@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "LSU-  Users",
-    "dateExported": "2023-07-05T03:58:23.641Z",
+    "dateExported": "2023-07-09T01:25:42.664Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 5000,
             "created": "2023-07-03T23:27:22.905Z",
-            "modified": "2023-07-03T23:27:22.905Z",
+            "modified": "2023-07-08T23:45:40.943Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"email\": \"rallred8456@gmail.com\",\n \"password\": \"test\",\n \"firstName\": \"Robert\",\n \"lastName\": \"Allred\",\n \"isAdmin\": \"false\"\n}",
+                "raw": "{\n \"email\": \"kIMBerLYLUcindA@me.com\",\n \"password\": \"test\",\n \"firstName\": \"Kimberly\",\n \"lastName\": \"Allred\",\n \"isAdmin\": false\n}",
                 "form": []
             },
             "tests": []
@@ -33,12 +33,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-07-03T23:27:22.904Z",
-            "modified": "2023-07-04T23:43:42.607Z",
+            "modified": "2023-07-08T23:45:55.062Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n \"email\": \"Deangelo_Bauch@yahoo.com\",\n \"password\": \"test\"\n}",
+                "raw": "{\n \"email\": \"kimberlylucinda@me.com\",\n \"password\": \"test\"\n}",
                 "form": []
             },
             "tests": []
@@ -52,12 +52,12 @@
             "method": "GET",
             "sortNum": 30000,
             "created": "2023-07-03T23:27:22.906Z",
-            "modified": "2023-07-04T18:14:00.646Z",
+            "modified": "2023-07-08T23:46:12.206Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImVtYWlsIjoiU3RlcGhhbnkxNUBob3RtYWlsLmNvbSIsImlhdCI6MTY4ODQ5NDI0MiwiZXhwIjoxNjg5MDk5MDQyfQ.pDuHaL66_ecRDDY-oU_c9rZxTDfj_NoHR7bXan8MSfQ"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzMsImVtYWlsIjoia2ltYmVybHlsdWNpbmRhQG1lLmNvbSIsImlhdCI6MTY4ODg1OTk1NSwiZXhwIjoxNjg5NDY0NzU1fQ.Vc5-Y1g5aT98KyN9yOtDL0M2vd8ASointskevEkUqe0"
             },
             "tests": []
         },
@@ -70,17 +70,17 @@
             "method": "PATCH",
             "sortNum": 40000,
             "created": "2023-07-03T23:27:22.907Z",
-            "modified": "2023-07-04T22:48:14.723Z",
+            "modified": "2023-07-08T23:46:30.318Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"firstName\": \"Bobby\",\n  \"email\": \"bob_abshire@hotmail.com\"\n}",
+                "raw": "{\n  \"firstName\": \"Kimberly\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJRdWludG9uX0Fic2hpcmVAaG90bWFpbC5jb20iLCJpYXQiOjE2ODg1MDk4MzgsImV4cCI6MTY4OTExNDYzOH0.M-0xBiKZbuVxe3E_VNUpLKPiZbh2n3tM6AZv29Wk-9M"
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTUsImVtYWlsIjoicmVkODVAZ21haWwuY29tIiwiaWF0IjoxNjg4ODM0OTcwLCJleHAiOjE2ODk0Mzk3NzB9._MbKeHGkwzbQAW7Cu-IwtznMRqSGu8jcgHO5W2s2d1E"
             },
             "tests": []
         }

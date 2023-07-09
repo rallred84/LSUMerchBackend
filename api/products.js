@@ -4,7 +4,6 @@ const productsRouter = express.Router();
 const {
   getAllProducts,
   createProduct,
-  getProductById,
   updateProduct,
   destroyProduct,
 } = require("../db");

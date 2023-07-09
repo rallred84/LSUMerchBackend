@@ -12,6 +12,7 @@ async function addProductToCart({ orderId, productId, quantity }) {
             `,
       [orderId, productId, quantity]
     );
+    console.log(newCartProduct);
     return newCartProduct;
   } catch (err) {
     console.error(err);

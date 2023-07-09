@@ -13,12 +13,33 @@ async function createUser({ email, password, firstName, lastName, isAdmin }) {
         ON CONFLICT (email) DO NOTHING
         RETURNING *;
         `,
-      [email, hashedPassword, firstName, lastName, isAdmin]
+      [email.toLowerCase(), hashedPassword, firstName, lastName, isAdmin]
     );
 
     if (newUser) {
       delete newUser.password;
       return newUser;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function getUserByEmail(email) {
+  try {
+    const {
+      rows: [user],
+    } = await client.query(
+      `
+      SELECT * FROM users
+      WHERE email = $1
+      `,
+      [email.toLowerCase()]
+    );
+
+    if (user) {
+      delete user.password;
+      return user;
     }
   } catch (err) {
     console.error(err);
@@ -98,4 +119,5 @@ module.exports = {
   getUserById,
   loginUser,
   updateUser,
+  getUserByEmail,
 };

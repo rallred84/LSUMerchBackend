@@ -2,23 +2,13 @@ const express = require("express");
 const reviewsRouter = express.Router();
 const jwt = require("jsonwebtoken");
 
-const {
-  createReview,
-  getReviewById,
-  updateReview,
-  destroyReview,
-} = require("../db");
+const { createReview, updateReview, destroyReview } = require("../db");
 const { requireUser } = require("./utils");
 
 reviewsRouter.use((req, res, next) => {
   console.log("Making request to /api/reviews");
   next();
 });
-
-// GET /reviews/:productId
-//join prodId to products to get reviews for product
-
-// POST /reviews/:productId
 
 reviewsRouter.post("/:productId", requireUser, async (req, res, next) => {
   const { productId } = req.params;
@@ -30,6 +20,14 @@ reviewsRouter.post("/:productId", requireUser, async (req, res, next) => {
       message,
       rating,
     });
+
+    if (!newReview) {
+      next({
+        name: "ErrorCreatingReview",
+        message:
+          "Your review was not created, check to make sure you filled out all fields",
+      });
+    }
     res.send({
       success: true,
       data: {
@@ -46,11 +44,11 @@ reviewsRouter.post("/:productId", requireUser, async (req, res, next) => {
 
 reviewsRouter.patch("/:productId", requireUser, async (req, res, next) => {
   const { productId } = req.params;
-  const { message, rating } = req.body;
 
   try {
     const updatedReview = await updateReview({
       productId,
+      creatorId: req.user.id,
       ...req.body,
     });
 
@@ -65,7 +63,8 @@ reviewsRouter.patch("/:productId", requireUser, async (req, res, next) => {
     } else {
       next({
         name: "ReviewError",
-        message: "Review didn't update",
+        message:
+          "There was an error updating this review or you do not have a review for this product",
       });
     }
   } catch (err) {
@@ -79,7 +78,10 @@ reviewsRouter.delete("/:productId", requireUser, async (req, res, next) => {
   const { productId } = req.params;
 
   try {
-    const deletedReview = await destroyReview(productId);
+    const deletedReview = await destroyReview({
+      productId,
+      creatorId: req.user.id,
+    });
 
     if (deletedReview) {
       res.send({
@@ -92,7 +94,8 @@ reviewsRouter.delete("/:productId", requireUser, async (req, res, next) => {
     } else {
       next({
         name: "ReviewError",
-        message: "Review didn't update",
+        message:
+          "There was an error deleting this review or you do not have a review for this product",
       });
     }
   } catch (err) {

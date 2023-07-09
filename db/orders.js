@@ -71,13 +71,13 @@ async function getOrdersByUserId(user) {
 
     for (let order of orders) {
       await addProductsToOrder({ order });
-      let totalPrice = 0;
-      for (let product of order.products) {
-        totalPrice =
-          totalPrice +
-          Number(product.price.slice(1)) * Number(product.quantity);
-      }
-      order.totalPrice = totalPrice;
+      // let totalPrice = 0;
+      // for (let product of order.products) {
+      //   totalPrice =
+      //     totalPrice +
+      //     Number(product.price.slice(1)) * Number(product.quantity);
+      // }
+      // order.totalPrice = totalPrice;
     }
 
     return orders;
@@ -91,7 +91,6 @@ async function getCartByUserId(user) {
     const orders = await getOrdersByUserId(user);
 
     const cart = orders.find((order) => order.orderStatus === "In Cart");
-
     return cart;
   } catch (err) {
     console.error(err);

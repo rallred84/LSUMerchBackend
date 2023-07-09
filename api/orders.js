@@ -1,12 +1,15 @@
 const express = require("express");
 const ordersRouter = express.Router();
 const { requireUser, requireAdmin } = require("./utils");
+const { addProductsToOrder } = require("../db/utils");
 const {
   getAllOrders,
   getOrdersByUserId,
   createOrder,
   updateOrder,
   getUserById,
+  getOrderById,
+  getCartByUserId,
 } = require("../db");
 
 ordersRouter.use((req, res, next) => {
@@ -41,12 +44,20 @@ ordersRouter.get(
     const user = await getUserById(userId);
     try {
       const usersOrders = await getOrdersByUserId(user);
-      res.send({
-        success: true,
-        data: {
-          orders: usersOrders,
-        },
-      });
+      console.log(usersOrders);
+      if (usersOrders[0]) {
+        res.send({
+          success: true,
+          data: {
+            orders: usersOrders,
+          },
+        });
+      } else {
+        next({
+          name: "NoOrdersExist",
+          message: "No orders exist for that user",
+        });
+      }
     } catch (err) {
       console.error(err);
     }
@@ -61,13 +72,13 @@ ordersRouter.get(
 
 ordersRouter.post("/", requireUser, async (req, res, next) => {
   try {
-    const newOrder = await createOrder({ userId: req.user.id });
-    if (newOrder) {
+    const newCart = await createOrder({ userId: req.user.id });
+    if (newCart) {
       res.send({
         success: true,
         data: {
           message: "New Persistant Cart Created",
-          order: newOrder,
+          cart: newCart,
         },
       });
     } else {
@@ -83,39 +94,80 @@ ordersRouter.post("/", requireUser, async (req, res, next) => {
 
 // PATCH /orders/:orderId/place
 
-ordersRouter.patch("/:orderId/place", async (req, res, next) => {
-  const { orderId } = req.params;
-  const placedOrder = await updateOrder({
-    id: orderId,
-    orderStatus: "Order Placed",
-  });
+ordersRouter.patch("/place", requireUser, async (req, res, next) => {
+  try {
+    const orderToUpdate = await getCartByUserId(req.user);
 
-  res.send({
-    success: true,
-    data: {
-      message: "Order has been placed",
-      order: placedOrder,
-    },
-  });
+    if (!orderToUpdate) {
+      next({
+        name: "OrderDoesNotExist",
+        message: "There is no open cart for this user",
+      });
+    }
+
+    await updateOrder({
+      id: orderToUpdate.id,
+      orderStatus: "Order Placed",
+    });
+
+    orderToUpdate.orderStatus = "Order Placed";
+
+    res.send({
+      success: true,
+      data: {
+        message: "Order has been placed",
+        order: orderToUpdate,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 // PATCH /orders/:orderId/complete
 
-ordersRouter.patch("/:orderId/complete", async (req, res, next) => {
-  const { orderId } = req.params;
-  const completedOrder = await updateOrder({
-    id: orderId,
-    orderStatus: "Order Complete",
-  });
+ordersRouter.patch(
+  "/:orderId/complete",
+  requireUser,
+  requireAdmin,
+  async (req, res, next) => {
+    const { orderId } = req.params;
 
-  res.send({
-    success: true,
-    data: {
-      message: "Order has been shipped/completed",
-      order: completedOrder,
-    },
-  });
-});
+    try {
+      const orderToUpdate = await getOrderById(orderId);
+      if (!orderToUpdate) {
+        return next({
+          name: "OrderDoesNotExist",
+          message: "There is no order that matches the given order ID",
+        });
+      }
+
+      if (orderToUpdate.orderStatus === "Order Complete") {
+        next({
+          name: "OrderAlreadyCompleted",
+          message: "Order has already been marked as completed",
+        });
+      }
+
+      const completedOrder = await updateOrder({
+        id: orderId,
+        orderStatus: "Order Complete",
+      });
+
+      await addProductsToOrder({ order: completedOrder });
+
+      res.send({
+        success: true,
+        data: {
+          message: "Order has been shipped/completed",
+          order: completedOrder,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
 
 ordersRouter;
 

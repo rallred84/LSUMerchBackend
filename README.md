@@ -614,7 +614,7 @@ Authorization (template literal,required): Bearer ${token} (_Authorization will 
   "success": true,
   "data": {
     "message": "New Persistant Cart Created",
-    "order": {
+    "cart": {
       "id": 24,
       "userId": 2,
       "price": null,
@@ -625,7 +625,7 @@ Authorization (template literal,required): Bearer ${token} (_Authorization will 
 }
 ```
 
-### PATCH /orders/:orderId/place
+### PATCH /orders/place
 
 **END USER ROUTE**
 
@@ -655,12 +655,19 @@ Authorization (template literal,required): Bearer ${token}
   "data": {
     "message": "Order has been placed",
     "order": {
-      "id": 102,
-      "userId": 58,
-      "totalPrice": null,
+      "id": 105,
+      "userId": 73,
+      "totalPrice": "$50.00",
       "orderStatus": "Order Placed",
       "products": [
-        //Still Need to build out this logic
+        {
+          "id": 10,
+          "name": "Basketball",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          "price": "$25.00",
+          "size": null,
+          "quantity": 2
+        }
       ]
     }
   }
@@ -697,12 +704,19 @@ Authorization (template literal,required): Bearer ${token}
   "data": {
     "message": "Order has been shipped/completed",
     "order": {
-      "id": 4,
-      "userId": 13,
-      "totalPrice": null,
+      "id": 105,
+      "userId": 73,
+      "totalPrice": "$50.00",
       "orderStatus": "Order Complete",
       "products": [
-        //Still Need to build out this logic
+        {
+          "id": 10,
+          "name": "Basketball",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          "price": "$25.00",
+          "size": null,
+          "quantity": 2
+        }
       ]
     }
   }
@@ -713,7 +727,7 @@ Authorization (template literal,required): Bearer ${token}
 
 [Go back to top of page](#api-docs)
 
-### POST /orders_products
+### POST /orders_products/add
 
 **END USERS ROUTE**
 
@@ -726,7 +740,6 @@ Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
-·orderId (number, required): ID of order the product is being added to  
 ·productId (number, required): ID of product being added to the order  
 ·quantity (number, required): Quantity of the product being added to the order
 
@@ -742,13 +755,26 @@ cart (object): Updated cart
   "data": {
     "message": "Product Has been added to cart",
     "cart": {
-      //Need to build the logic for this output
+      "id": 105,
+      "userId": 73,
+      "totalPrice": "$50.00",
+      "orderStatus": "In Cart",
+      "products": [
+        {
+          "id": 10,
+          "name": "Basketball",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          "price": "$25.00",
+          "size": null,
+          "quantity": 2
+        }
+      ]
     }
   }
 }
 ```
 
-### PATCH /orders_products
+### PATCH /orders_products/update
 
 **END USERS ROUTE**
 
@@ -761,7 +787,6 @@ Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
-·orderId (number, required): ID of order the product is associated with  
 ·productId (number, required): ID of product whose quantity is being changed  
 ·quantity (number, required): New quantity of the product included in the order
 
@@ -777,13 +802,26 @@ cart (object): Updated cart
   "data": {
     "message": "Product Quantity has been updated",
     "cart": {
-      //Need to build the logic for this output
+      "id": 105,
+      "userId": 73,
+      "totalPrice": "$100.00",
+      "orderStatus": "In Cart",
+      "products": [
+        {
+          "id": 10,
+          "name": "Basketball",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+          "price": "$25.00",
+          "size": null,
+          "quantity": 4
+        }
+      ]
     }
   }
 }
 ```
 
-### DELETE /orders_products
+### DELETE /orders_products/remove
 
 **END USERS ROUTE**
 
@@ -796,7 +834,6 @@ Authorization (template literal,required): Bearer ${token}
 
 **Body:**  
 **(object, required) contains the following key/value pairs:**  
-·orderId (number, required): ID of order the product is associated with  
 ·productId (number, required): ID of product being removed from the order (cart)
 
 **Returned Data**  
@@ -810,12 +847,12 @@ cart (object): Updated cart
   "success": true,
   "data": {
     "message": "Product Has been deleted from cart",
-    //MAY CHANGE THIS OUTPUT TOO
-    "deletedCartProduct": {
-      "id": 2,
-      "orderId": 1,
-      "productId": 8,
-      "quantity": 3
+    "cart": {
+      "id": 105,
+      "userId": 73,
+      "totalPrice": "$0.00",
+      "orderStatus": "In Cart",
+      "products": []
     }
   }
 }

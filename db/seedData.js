@@ -2,9 +2,9 @@ const {
   //Individiual table functions from all tables here
   createUser,
   createProduct,
-  createCategory,
+  // createCategory,
   createOrder,
-  createAddress,
+  // createAddress,
   createReview,
 } = require("./");
 

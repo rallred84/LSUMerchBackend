@@ -5,6 +5,7 @@ async function createProduct({
   description,
   price,
   stockQuantity,
+  imageURL,
   size,
 }) {
   try {
@@ -12,11 +13,11 @@ async function createProduct({
       rows: [product],
     } = await client.query(
       `
-    INSERT INTO products (name, description, price, "stockQuantity", size)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO products (name, description, price, "stockQuantity", "imageURL", size)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *
     `,
-      [name, description, price, stockQuantity, size]
+      [name, description, price, stockQuantity, imageURL, size]
     );
 
     if (product) {

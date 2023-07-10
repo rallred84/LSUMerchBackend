@@ -61,6 +61,7 @@ async function createTables() {
     description TEXT NOT NULL,
     price MONEY NOT NULL,
     "stockQuantity" INTEGER NOT NULL,
+    "imageURL" VARCHAR (255) NOT NULL,
     size VARCHAR(255)
   );
 
@@ -168,30 +169,15 @@ async function createInitialProducts() {
   console.log("Creating Initial Products");
 
   try {
-    const productsToCreate = [
-      {
-        name: "Basketball",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        price: 25,
-        stockQuantity: 4,
-      },
-      {
-        name: "T-Shirt",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        price: 30,
-        stockQuantity: 10,
-        size: "XL",
-      },
-    ];
+    const productsToCreate = [];
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 30; i++) {
       productsToCreate.push({
         name: faker.commerce.product(),
         description: faker.commerce.productDescription(),
         price: faker.number.int({ min: 5, max: 200 }),
         stockQuantity: faker.number.int({ min: 5, max: 200 }),
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
       });
     }
 

@@ -59,10 +59,12 @@ async function createTables() {
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
+    category TEXT NOT NULL,
     price MONEY NOT NULL,
     "stockQuantity" INTEGER NOT NULL,
     "imageURL" VARCHAR (255) NOT NULL,
-    size VARCHAR(255)
+    size VARCHAR(255),
+    "isFeatured" BOOLEAN DEFAULT false NOT NULL
   );
 
   CREATE TYPE status AS ENUM ('In Cart', 'Order Placed', 'Order Complete');
@@ -178,6 +180,8 @@ async function createInitialProducts() {
         price: faker.number.int({ min: 5, max: 200 }),
         stockQuantity: faker.number.int({ min: 5, max: 200 }),
         imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
+        isFeatured: false,
+        category: "Mens",
       });
     }
 

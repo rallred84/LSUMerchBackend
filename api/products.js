@@ -6,6 +6,7 @@ const {
   createProduct,
   updateProduct,
   destroyProduct,
+  getReviewsByProductId,
 } = require("../db");
 
 const { requireUser, requireAdmin } = require("./utils");
@@ -18,10 +19,28 @@ productsRouter.use((req, res, next) => {
 // GET /products
 
 productsRouter.get("/", async (req, res, next) => {
+  const addReviews = async (productArray) => {
+    return Promise.all(
+      productArray.map(async (product) => {
+        product.reviews = (await getReviewsByProductId(product.id)) || [];
+        if (product.reviews[0]) {
+          let reviewSum = 0;
+          product.reviews.forEach((review) => {
+            reviewSum = reviewSum + review.rating;
+          });
+          product.averageReview = reviewSum / product.reviews.length;
+        } else product.averageReview = null;
+        // console.log(product);
+        return product;
+      })
+    );
+  };
+
   try {
     const products = await getAllProducts();
 
     if (products) {
+      await addReviews(products);
       res.send({
         success: true,
         data: {

@@ -240,24 +240,33 @@ This route is used to grab all products currently listed as inventory items
   "data": {
     "products": [
       {
-        "id": 2,
-        "name": "Mug",
-        "description": "Lorem ipsum dolor",
-        //image information
-        "price": 10,
-        "stockQuantity": 3,
-        "size": null
-      },
-      {
-        "id": 4,
-        "name": "T-shirt",
-        "description": "Lorem ipsum dolor",
-        //image information
-        "price": 8,
-        "stockQuantity": 2,
-        "size": null
+        "id": 1,
+        "name": "Bacon",
+        "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+        "price": "$94.00",
+        "stockQuantity": 112,
+        "imageURL": "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
+        "size": null,
+        "reviews": [
+          {
+            "id": 15,
+            "creatorId": 22,
+            "productId": 1,
+            "message": "Deleniti ea libero nihil quas nostrum ab molestias beatae perferendis omnis fuga natus inventore iusto aspernatur iure officia exercitationem quibusdam commodi reprehenderit impedit sit impedit inventore cumque culpa tenetur aperiam alias placeat ducimus provident eveniet.",
+            "rating": 5,
+            "date": "2023-07-09T05:00:00.000Z"
+          },
+          {
+            "id": 73,
+            "creatorId": 23,
+            "productId": 1,
+            "message": "Sit velit dolor minus sint porro quaerat accusantium tempore amet reprehenderit officiis sequi assumenda a distinctio maiores at illum dolor incidunt labore necessitatibus qui possimus harum animi dolores incidunt nam deleniti incidunt vel minus quasi cumque nobis laboriosam assumenda mollitia.",
+            "rating": 1,
+            "date": "2023-07-09T05:00:00.000Z"
+          }
+        ],
+        "averageReview": 3
       }
-      //more products
     ]
   }
 }

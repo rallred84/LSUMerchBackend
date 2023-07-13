@@ -254,7 +254,8 @@ This route is used to grab all products currently listed as inventory items
             "productId": 1,
             "message": "Deleniti ea libero nihil quas nostrum ab molestias beatae perferendis omnis fuga natus inventore iusto aspernatur iure officia exercitationem quibusdam commodi reprehenderit impedit sit impedit inventore cumque culpa tenetur aperiam alias placeat ducimus provident eveniet.",
             "rating": 5,
-            "date": "2023-07-09T05:00:00.000Z"
+            "date": "2023-07-09T05:00:00.000Z",
+            "creatorName": "Sydney"
           },
           {
             "id": 73,
@@ -262,7 +263,8 @@ This route is used to grab all products currently listed as inventory items
             "productId": 1,
             "message": "Sit velit dolor minus sint porro quaerat accusantium tempore amet reprehenderit officiis sequi assumenda a distinctio maiores at illum dolor incidunt labore necessitatibus qui possimus harum animi dolores incidunt nam deleniti incidunt vel minus quasi cumque nobis laboriosam assumenda mollitia.",
             "rating": 1,
-            "date": "2023-07-09T05:00:00.000Z"
+            "date": "2023-07-09T05:00:00.000Z",
+            "creatorName": "Michael"
           }
         ],
         "averageReview": 3

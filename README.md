@@ -1,6 +1,6 @@
 # LSU Merch Backend
 
-### Team Name: MIERNEDO / Members: Robert Allred, Sydney Weakley, Michael Wilson, Eduardo Martin
+### Team Name: MIERNEDO / Members: Robert Allred, Sydney Weakley, Michael Wilson
 
 ## Overview:
 

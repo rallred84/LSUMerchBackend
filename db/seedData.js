@@ -237,8 +237,7 @@ async function createInitialProducts() {
         stockQuantity: 15,
         imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/mug.png",
         isFeatured: true,
-        category: "",
-        size: "Household",
+        category: "Household",
       },
       {
         name: `Plush Football`,

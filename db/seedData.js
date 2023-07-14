@@ -138,16 +138,9 @@ async function createInitialUsers() {
         lastName: "Wilson",
         isAdmin: true,
       },
-      {
-        email: "EduardoAlsoAlsoAlsoCodes@aol.com",
-        password: "test",
-        firstName: "Eduardo",
-        lastName: "Martin",
-        isAdmin: true,
-      },
     ];
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 20; i++) {
       usersToCreate.push({
         email: faker.internet.email(),
         password: "test",
@@ -195,7 +188,7 @@ async function createInitialProducts() {
       },
       {
         name: `Gold LSU Teeshirt`,
-        description: "",
+        description: "Gold t-shirt with LSU on chest. Simple, but effective.",
         price: 45,
         stockQuantity: 15,
         imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/gold-tee.png",
@@ -233,7 +226,7 @@ async function createInitialProducts() {
         stockQuantity: 15,
         imageURL:
           "https://tigers-den.s3.us-east-2.amazonaws.com/mini-helmet.png",
-        isFeatured: true,
+        isFeatured: false,
         category: "Memorabilia",
       },
       {
@@ -256,7 +249,7 @@ async function createInitialProducts() {
         imageURL:
           "https://tigers-den.s3.us-east-2.amazonaws.com/plush-football.png",
         isFeatured: false,
-        category: "Toys",
+        category: "Memorabilia",
       },
       {
         name: `Purple Tiger Glasses`,
@@ -363,126 +356,136 @@ async function createInitialProducts() {
       {
         name: `Home Depot Bucket`,
         description: "Getting things done... in style",
-        price: 25,
+        price: 8,
         stockQuantity: 15,
         imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/bucket.png",
         isFeatured: false,
-        category: "",
-        size: "",
+        category: "Household",
       },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
-      // {
-      //   name: ``,
-      //   description: "",
-      //   price: 25,
-      //   stockQuantity: 15,
-      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
-      //   isFeatured: false,
-      //   category: "",
-      //   size: "",
-      // },
+      {
+        name: `Cat Scratch Post`,
+        description:
+          "Keep your cat's claws as dull as LSU's opponents with this fashionable cat scratch post",
+        price: 35,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/cat-scratch.png",
+        isFeatured: false,
+        category: "Household",
+      },
+      {
+        name: `Stadium Dog Bed`,
+        description:
+          "We all wish we could just sleep at the stadium until game day. Well Fido can with this awesome LSU dog bed!",
+        price: 45,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/dog-bed.png",
+        isFeatured: false,
+        category: "Household",
+      },
+      {
+        name: `Rubber Football`,
+        description:
+          "Toss around the pigskin with your friends while showing off your allegiance to the Tigers",
+        price: 15,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/fball.png",
+        isFeatured: true,
+        category: "Memorabilia",
+      },
+      {
+        name: `Vintage Lamp`,
+        description: "Wow your friends with this beautiful vintage LSU lamp.",
+        price: 195,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lamp.png",
+        isFeatured: true,
+        category: "Household",
+      },
+      {
+        name: `Monster Tiger Truck`,
+        description:
+          "Roll over the competition with this awesome toy monster truck... LSU style!",
+        price: 25,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/monster.png",
+        isFeatured: false,
+        category: "Memorabilia",
+      },
+      {
+        name: `"New Fan" Onesie`,
+        description:
+          "Let your littlest one show allegiance to the tigers when you take them out on the town!",
+        price: 25,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/newfan-onesie.png",
+        isFeatured: false,
+        category: "Baby",
+      },
+      {
+        name: `Baby Plush Toy`,
+        description: "Gray Bear plush toy for infants emblazened with LSU logo",
+        price: 15,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/plush.png",
+        isFeatured: false,
+        category: "Baby",
+      },
+      {
+        name: `Fold Up Poker Table`,
+        description:
+          "Always be a winner when you play cards with your friends by repping the Tigers while you do!",
+        price: 80,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/poker.png",
+        isFeatured: false,
+        category: "Household",
+      },
+      {
+        name: `Tractor Trailer Toy`,
+        description:
+          "The only thing big enoough to haul off of LSU's opponent's tears. (You may need to buy multiple!)",
+        price: 15,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/truck.png",
+        isFeatured: false,
+        category: "Memorabilia",
+      },
+      {
+        name: `Purple Button Up`,
+        description:
+          "Need to dress nice but still wanna rep? We got you covered!",
+        price: 55,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/button-up.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Large",
+      },
+      {
+        name: `Long Sleeve Eye`,
+        description:
+          "Keep warm with this black long sleeve eye of the tiger shirt",
+        price: 35,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/longsleeve.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Medium",
+      },
+      {
+        name: `Purple Tiger Shirt`,
+        description: "Stay on the prowl in this comfy and fashionable tee.",
+        price: 28,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/tiger.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Large",
+      },
     ];
-
-    // for (let i = 0; i < 30; i++) {
-    //   productsToCreate.push({
-    //     name: faker.commerce.product(),
-    //     description: faker.commerce.productDescription(),
-    //     price: faker.number.int({ min: 5, max: 200 }),
-    //     stockQuantity: faker.number.int({ min: 5, max: 200 }),
-    //     imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
-    //     isFeatured: false,
-    //     category: "Mens",
-    //   });
-    // }
 
     const products = await Promise.all(productsToCreate.map(createProduct));
 
@@ -584,29 +587,57 @@ async function createInitialReviews() {
   console.log("Creating Initial Reviews");
 
   try {
-    const reviewsToCreate = [
-      {
-        creatorId: 2,
-        productId: 4,
-        message:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        rating: 3,
-      },
-      {
-        creatorId: 3,
-        productId: 9,
-        message:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-        rating: 1,
-      },
-    ];
+    const reviewsToCreate = [];
 
-    for (let i = 0; i < 75; i++) {
+    for (let i = 0; i < 10; i++) {
       reviewsToCreate.push({
-        creatorId: faker.number.int({ min: 1, max: 24 }),
-        productId: faker.number.int({ min: 1, max: 100 }),
-        message: faker.lorem.sentence({ min: 5, max: 40 }),
-        rating: faker.number.int({ min: 1, max: 10 }),
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message: "This was a PERFECT purchase. I couldn't live without it.",
+        rating: 5,
+      });
+    }
+    for (let i = 0; i < 20; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message:
+          "This product was great, I gave it to my neighbor and they loved it!",
+        rating: faker.number.int({ min: 4, max: 5 }),
+      });
+    }
+    for (let i = 0; i < 20; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message: "I got this for Christmas this year and use it all the time",
+        rating: faker.number.int({ min: 4, max: 5 }),
+      });
+    }
+    for (let i = 0; i < 20; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message: "It could have been better, but it Was still alright.",
+        rating: faker.number.int({ min: 3, max: 4 }),
+      });
+    }
+    for (let i = 0; i < 20; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message:
+          "The build quality could have been a little bit better, but it was a great price and was delivered on time",
+        rating: faker.number.int({ min: 3, max: 4 }),
+      });
+    }
+    for (let i = 0; i < 10; i++) {
+      reviewsToCreate.push({
+        creatorId: faker.number.int({ min: 1, max: 23 }),
+        productId: faker.number.int({ min: 1, max: 30 }),
+        message:
+          "I was really unhappy with this product. Would not purchase again",
+        rating: faker.number.int({ min: 1, max: 2 }),
       });
     }
 

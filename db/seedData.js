@@ -171,19 +171,217 @@ async function createInitialProducts() {
   console.log("Creating Initial Products");
 
   try {
-    const productsToCreate = [];
-
-    for (let i = 0; i < 30; i++) {
-      productsToCreate.push({
-        name: faker.commerce.product(),
-        description: faker.commerce.productDescription(),
-        price: faker.number.int({ min: 5, max: 200 }),
-        stockQuantity: faker.number.int({ min: 5, max: 200 }),
-        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
+    const productsToCreate = [
+      {
+        name: `Joe Burrow "BURREAUX" Jersey`,
+        description: "White Jersey with purple letters.",
+        price: 150,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/burreaux-jersey.png",
+        isFeatured: true,
+        category: "Clothing",
+        size: "Large",
+      },
+      {
+        name: `World Series National Championship Flag`,
+        description:
+          "Purple flag celebraring the 2023 NCAA Baseball National Championship",
+        price: 25,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/flag.png",
+        isFeatured: true,
+        category: "Memorabilia",
+      },
+      {
+        name: `Gold LSU Teeshirt`,
+        description: "",
+        price: 45,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/gold-tee.png",
         isFeatured: false,
-        category: "Mens",
-      });
-    }
+        category: "Clothing",
+        size: "X-Large",
+      },
+      {
+        name: `Gray LSU Sweatshirt`,
+        description:
+          "Gray LSU Headshirt with purple lettering and gold trim, perfect for a cold night!",
+        price: 80,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/gray-sweatshirt.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Medium",
+      },
+      {
+        name: `Geaux Tigers Tiger Print Tee`,
+        description: "Fun gray t-shirt with tiger print lettering",
+        price: 30,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/gray-tee.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Large",
+      },
+      {
+        name: `LSU Mini Helmet`,
+        description:
+          "Gold Helmet with Purple lettering. Make your co-workers jealous when you display this on your desk!",
+        price: 40,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/mini-helmet.png",
+        isFeatured: true,
+        category: "Memorabilia",
+      },
+      {
+        name: `Eye of the Tiger Coffee Mug`,
+        description:
+          "Purple mug with the eye of the tiger. Enjoy your morning refreshments in style!",
+        price: 25,
+        stockQuantity: 15,
+        imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/mug.png",
+        isFeatured: true,
+        category: "",
+        size: "Household",
+      },
+      {
+        name: `Plush Football`,
+        description:
+          "Play with your children or blow off some steam around the office with your very own LSU plush football.",
+        price: 15,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/plush-football.png",
+        isFeatured: false,
+        category: "Toys",
+      },
+      {
+        name: `Purple Tiger Glasses`,
+        description:
+          "A future so bright, you gotta wear shades! Purple sunglasses with purple tint, perfect fo any LSU fan!",
+        price: 30,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/purple-glasses.png",
+        isFeatured: true,
+        category: "Accessories",
+      },
+      {
+        name: `Purple Onesie`,
+        description:
+          "Raise them right AND in style with this purple LSU onesie polo",
+        price: 32,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/purple-onesie.png",
+        isFeatured: false,
+        category: "Baby",
+        size: "6 months",
+      },
+      {
+        name: `Silicone Ring`,
+        description:
+          "It's not a mood ring, but if you're in the modd to WIN, it might be the perfect ring for you!",
+        price: 12,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/purple-ring.png",
+        isFeatured: true,
+        category: "Accessories",
+      },
+      {
+        name: `Purple Shoes`,
+        description:
+          "Show your school pride as you tear up the streets in your very own LSU kicks!",
+        price: 95,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/purple-shoes.png",
+        isFeatured: true,
+        category: "Accessories",
+        size: "10- mens",
+      },
+      {
+        name: `Purple LSU T-shirt`,
+        description: "Purple t-shirt with gold lettering. Simple but sleak.",
+        price: 40,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/purple-tee.png",
+        isFeatured: false,
+        category: "Clothing",
+        size: "Medium",
+      },
+      {
+        name: `Striped Onesie`,
+        description:
+          "Let your little one impress the neighbors with this white and black striped LSU onesie",
+        price: 30,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/striped-onesie.png",
+        isFeatured: false,
+        category: "Baby",
+        size: "3 months",
+      },
+      {
+        name: `Tiger Onesie`,
+        description:
+          "Who's number 1? Your baby is when they wear this adorable tiger onesie!",
+        price: 25,
+        stockQuantity: 15,
+        imageURL:
+          "https://tigers-den.s3.us-east-2.amazonaws.com/white-onesie.png",
+        isFeatured: false,
+        category: "",
+        size: "",
+      },
+      // {
+      //   name: ``,
+      //   description: "",
+      //   price: 25,
+      //   stockQuantity: 15,
+      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
+      //   isFeatured: false,
+      //   category: "",
+      //   size: "",
+      // },
+      // {
+      //   name: ``,
+      //   description: "",
+      //   price: 25,
+      //   stockQuantity: 15,
+      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
+      //   isFeatured: false,
+      //   category: "",
+      //   size: "",
+      // },
+      // {
+      //   name: ``,
+      //   description: "",
+      //   price: 25,
+      //   stockQuantity: 15,
+      //   imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/XXXX.png",
+      //   isFeatured: false,
+      //   category: "",
+      //   size: "",
+      // },
+    ];
+
+    // for (let i = 0; i < 30; i++) {
+    //   productsToCreate.push({
+    //     name: faker.commerce.product(),
+    //     description: faker.commerce.productDescription(),
+    //     price: faker.number.int({ min: 5, max: 200 }),
+    //     stockQuantity: faker.number.int({ min: 5, max: 200 }),
+    //     imageURL: "https://tigers-den.s3.us-east-2.amazonaws.com/lsu-mug2.png",
+    //     isFeatured: false,
+    //     category: "Mens",
+    //   });
+    // }
 
     const products = await Promise.all(productsToCreate.map(createProduct));
 

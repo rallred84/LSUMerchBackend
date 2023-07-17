@@ -5,7 +5,6 @@
     "start:dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "proxy": "<http://localhost:3000>",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

@@ -2,7 +2,8 @@ const express = require("express");
 const apiRouter = express.Router();
 const { getUserById } = require("../db");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, STRIPE_KEY } = process.env;
+const stripe = require("stripe")(STRIPE_KEY);
 
 //GET /api/health
 apiRouter.get("/health", async (req, res) => {
@@ -41,6 +42,39 @@ apiRouter.use("/", async (req, res, next) => {
 
 //ROUTES
 // Will require and use individual routers for each path we set up
+
+//CHECKOUT
+//Endpoint for Stripe checkout
+
+apiRouter.post("/checkout", async (req, res) => {
+  try {
+    console.log("test");
+    const { totalPrice, orderId } = req.body;
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            unit_amount: totalPrice,
+            product_data: {
+              name: "Tiger's Den",
+              description: `Order ID: ${orderId}`,
+            },
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `http://localhost:5173/confirmation/${orderId}?success=true`,
+      cancel_url: `http://localhost:5173/checkout?success=true`,
+    });
+    console.log(session.url);
+
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 //ROUTER: /api/users
 const usersRouter = require("./users");

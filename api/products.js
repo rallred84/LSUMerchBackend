@@ -30,7 +30,6 @@ productsRouter.get("/", async (req, res, next) => {
           });
           product.averageReview = reviewSum / product.reviews.length;
         } else product.averageReview = null;
-        // console.log(product);
         return product;
       })
     );

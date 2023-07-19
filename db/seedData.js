@@ -26,22 +26,6 @@ async function dropTables() {
   `);
 }
 
-// COMMENTING OUT TABLES NOT CURRENTLY BEING USED
-// May Add back in later
-// CREATE TABLE categories (
-//   id SERIAL PRIMARY KEY,
-//   name VARCHAR(255) NOT NULL,
-//   description TEXT NOT NULL
-// );
-
-// CREATE TABLE addresses (
-//   id SERIAL PRIMARY KEY,
-//   street TEXT NOT NULL,
-//   city TEXT NOT NULL,
-//   state TEXT NOT NULL,
-//   zip VARCHAR(10) NOT NULL
-// );
-
 async function createTables() {
   try {
     console.log("Starting to build the tables...");
@@ -104,12 +88,6 @@ async function createTables() {
     console.error("Tables failed");
     throw error;
   }
-  //USERS
-  //Will add addressId after adding address table
-  //Phone Number?
-  //D/O/B, age?
-  //PRODUCTS
-  //Research how to add image?
 }
 
 async function createInitialUsers() {
@@ -496,35 +474,6 @@ async function createInitialProducts() {
   }
 }
 
-// async function createInitialCategories() {
-//   console.log("Creating Initial Categories");
-
-//   try {
-//     const categoriesToCreate = [
-//       {
-//         name: "T-Shirts",
-//         description:
-//           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-//       },
-//       {
-//         name: "Hats",
-//         description:
-//           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-//       },
-//     ];
-
-//     const categories = await Promise.all(
-//       categoriesToCreate.map(createCategory)
-//     );
-
-//     console.log("Category created!");
-//     console.log(categories);
-//     console.log("Finished creating categories!");
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
 async function createInitialOrders() {
   console.log("Creating Initial Orders");
 
@@ -546,41 +495,6 @@ async function createInitialOrders() {
     console.error(err);
   }
 }
-
-// async function createInitialAddresses() {
-//   console.log("Creating Initial Addresses");
-
-//   try {
-//     const addressesToCreate = [
-//       {
-//         street: "2040 Thisway Dr.",
-//         city: "Seattle",
-//         state: "Oregon",
-//         zip: "22432",
-//       },
-//       {
-//         street: "2100 Overhere St.",
-//         city: "Orlando",
-//         state: "Florida",
-//         zip: "5436-32431",
-//       },
-//       {
-//         street: "555 Here Dr.",
-//         city: "Chicago",
-//         state: "Illinois",
-//         zip: "65345",
-//       },
-//     ];
-
-//     const addresses = await Promise.all(addressesToCreate.map(createAddress));
-
-//     console.log("Address created!");
-//     console.log(addresses);
-//     console.log("Finished creating addresses!");
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
 
 async function createInitialReviews() {
   console.log("Creating Initial Reviews");
@@ -655,15 +569,8 @@ async function rebuildDB() {
   await createTables();
   await createInitialUsers();
   await createInitialProducts();
-  // await createInitialCategories();
   await createInitialOrders();
-  // await createInitialAddresses();
   await createInitialReviews();
-  // To rebuild and reseed the database, we will need to :
-  // 1) Drop Tables
-  // 2) Create Tables
-  // 3) Create Data for individual tables
-  // 4) Catch and Throw Error
 }
 
 module.exports = rebuildDB;
